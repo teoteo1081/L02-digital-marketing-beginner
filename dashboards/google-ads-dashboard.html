@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Google Ads (mẫu)</title>
+<link rel="stylesheet" href="shared/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">🔍 Google Ads</span>
+  <h1>Dashboard mẫu — Google Ads</h1>
+  <p class="subtitle">Impressions, Clicks, CTR, CPC, Conversions, Quality Score.</p>
+</header>
+
+<div class="disclaimer">⚠️ Dữ liệu minh hoạ để học cách đọc chỉ số — KHÔNG phải benchmark ngành thật.</div>
+
+<nav class="dash-nav">
+  <a href="index.html">← Tất cả dashboard</a>
+  <a href="facebook-ads-dashboard.html">Facebook</a>
+  <a href="google-ads-dashboard.html" class="active">Google</a>
+  <a href="tiktok-ads-dashboard.html">TikTok</a>
+  <a href="zalo-ads-dashboard.html">Zalo</a>
+  <a href="ga4-organic-dashboard.html">GA4</a>
+</nav>
+
+<div class="kpi-grid" id="kpi-grid"></div>
+
+<section class="chart-card">
+  <h2>Impressions theo ngày</h2>
+  <p class="chart-note">Số lượt hiển thị quảng cáo tìm kiếm mỗi ngày.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-impr"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('impr-table', this)">Xem dạng bảng</button>
+  <div id="impr-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Conversions theo ngày</h2>
+  <p class="chart-note">Số lượt chuyển đổi (mua hàng/để lại thông tin) mỗi ngày.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-conv"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('conv-table', this)">Xem dạng bảng</button>
+  <div id="conv-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Hiệu quả theo từ khoá</h2>
+  <p class="chart-note">Clicks, CPC, tỷ lệ chuyển đổi, Quality Score theo từng nhóm từ khoá.</p>
+  <div id="kw-table-holder"></div>
+</section>
+</div>
+
+<script src="shared/sample-data.js"></script>
+<script>
+const d = SAMPLE.google;
+const cd = chartDefaults();
+
+const totalImpr = d.impressions.reduce((a,b)=>a+b,0);
+const totalClicks = d.clicks.reduce((a,b)=>a+b,0);
+const totalConv = d.conversions.reduce((a,b)=>a+b,0);
+const ctr = (totalClicks/totalImpr*100);
+const convRate = (totalConv/totalClicks*100);
+document.getElementById('kpi-grid').innerHTML = `
+  <div class="kpi-card"><div class="kpi-label">Tổng Impressions</div><div class="kpi-value">${totalImpr.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">Tổng Clicks</div><div class="kpi-value">${totalClicks.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">CTR</div><div class="kpi-value">${ctr.toFixed(2)}%</div></div>
+  <div class="kpi-card"><div class="kpi-label">Tỷ lệ chuyển đổi</div><div class="kpi-value">${convRate.toFixed(2)}%</div></div>
+`;
+
+function lineChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'line',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, borderColor:color, backgroundColor:color+'33', fill:true, tension:.3, pointRadius:4, borderWidth:2 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+function barChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'bar',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, backgroundColor:color, borderRadius:4 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+
+lineChart('chart-impr', d.impressions, cd.series[0], 'Impressions');
+barChart('chart-conv', d.conversions, cd.series[2], 'Conversions');
+
+renderTable('impr-table-holder', ['Ngày','Impressions'], SAMPLE.labels7d.map((l,i)=>[l, d.impressions[i].toLocaleString('vi-VN')]));
+document.getElementById('impr-table-holder').firstElementChild.id = 'impr-table';
+renderTable('conv-table-holder', ['Ngày','Conversions'], SAMPLE.labels7d.map((l,i)=>[l, d.conversions[i]]));
+document.getElementById('conv-table-holder').firstElementChild.id = 'conv-table';
+
+renderTable('kw-table-holder', ['Từ khoá','Clicks','CPC','Tỷ lệ chuyển đổi','Quality Score'],
+  d.keywords.map(k=>[k.name, k.clicks, k.cpc.toLocaleString('vi-VN')+'đ', k.convRate+'%', k.qualityScore+'/10']));
+document.getElementById('kw-table-holder').firstElementChild.classList.add('show');
+</script>
+</body>
+</html>

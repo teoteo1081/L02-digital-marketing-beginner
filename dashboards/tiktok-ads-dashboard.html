@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard TikTok Ads (mẫu)</title>
+<link rel="stylesheet" href="shared/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">🎵 TikTok Ads</span>
+  <h1>Dashboard mẫu — TikTok Ads</h1>
+  <p class="subtitle">Views, Engagement rate, CPM, CPA.</p>
+</header>
+
+<div class="disclaimer">⚠️ Dữ liệu minh hoạ để học cách đọc chỉ số — KHÔNG phải benchmark ngành thật.</div>
+
+<nav class="dash-nav">
+  <a href="index.html">← Tất cả dashboard</a>
+  <a href="facebook-ads-dashboard.html">Facebook</a>
+  <a href="google-ads-dashboard.html">Google</a>
+  <a href="tiktok-ads-dashboard.html" class="active">TikTok</a>
+  <a href="zalo-ads-dashboard.html">Zalo</a>
+  <a href="ga4-organic-dashboard.html">GA4</a>
+</nav>
+
+<div class="kpi-grid" id="kpi-grid"></div>
+
+<section class="chart-card">
+  <h2>Views theo ngày</h2>
+  <p class="chart-note">Số lượt xem video quảng cáo mỗi ngày.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-views"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('views-table', this)">Xem dạng bảng</button>
+  <div id="views-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Engagement rate theo ngày (%)</h2>
+  <p class="chart-note">Tỷ lệ tương tác (tim, bình luận, chia sẻ) trên số lượt xem.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-eng"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('eng-table', this)">Xem dạng bảng</button>
+  <div id="eng-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>So sánh video</h2>
+  <p class="chart-note">Views, CPM, CPA theo từng video quảng cáo.</p>
+  <div id="video-table-holder"></div>
+</section>
+</div>
+
+<script src="shared/sample-data.js"></script>
+<script>
+const d = SAMPLE.tiktok;
+const cd = chartDefaults();
+
+const totalViews = d.views.reduce((a,b)=>a+b,0);
+const avgEng = (d.engagement.reduce((a,b)=>a+b,0)/d.engagement.length);
+document.getElementById('kpi-grid').innerHTML = `
+  <div class="kpi-card"><div class="kpi-label">Tổng Views (7 ngày)</div><div class="kpi-value">${totalViews.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">Engagement rate TB</div><div class="kpi-value">${avgEng.toFixed(1)}%</div></div>
+`;
+
+function lineChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'line',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, borderColor:color, backgroundColor:color+'33', fill:true, tension:.3, pointRadius:4, borderWidth:2 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+
+lineChart('chart-views', d.views, cd.series[0], 'Views');
+lineChart('chart-eng', d.engagement, cd.series[3], 'Engagement rate (%)');
+
+renderTable('views-table-holder', ['Ngày','Views'], SAMPLE.labels7d.map((l,i)=>[l, d.views[i].toLocaleString('vi-VN')]));
+document.getElementById('views-table-holder').firstElementChild.id = 'views-table';
+renderTable('eng-table-holder', ['Ngày','Engagement rate'], SAMPLE.labels7d.map((l,i)=>[l, d.engagement[i]+'%']));
+document.getElementById('eng-table-holder').firstElementChild.id = 'eng-table';
+
+renderTable('video-table-holder', ['Video','Views','CPM','CPA'],
+  d.videos.map(v=>[v.name, v.views.toLocaleString('vi-VN'), v.cpm.toLocaleString('vi-VN')+'đ', v.cpa.toLocaleString('vi-VN')+'đ']));
+document.getElementById('video-table-holder').firstElementChild.classList.add('show');
+</script>
+</body>
+</html>

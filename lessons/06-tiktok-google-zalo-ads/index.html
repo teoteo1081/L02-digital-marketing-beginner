@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 06 — TikTok, Google & Zalo Ads</title>
+<style>
+:root{--teal:#0f3d3e;--orange:#e08e45;--bg:#faf9f6;--card:#fff;--border:#e2ded4;--text:#1a1a1a;--muted:#666;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0 16px 60px;}
+.wrap{max-width:760px;margin:0 auto;}
+header.top{padding:28px 0 16px;}
+.badge{display:inline-block;background:var(--teal);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:.03em;}
+h1{font-size:1.6rem;margin:.5rem 0 .3rem;color:var(--teal);}
+.subtitle{color:var(--muted);margin:0 0 1rem;}
+.intro{background:#fff4e6;border-left:4px solid var(--orange);padding:12px 16px;border-radius:6px;margin-bottom:20px;font-size:.95rem;}
+.block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.block h2{font-size:1.05rem;color:var(--teal);margin-top:0;border-left:4px solid var(--orange);padding-left:10px;}
+label{display:block;font-weight:600;margin:14px 0 6px;font-size:.92rem;}
+label:first-of-type{margin-top:0;}
+textarea,input[type=text]{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:.92rem;resize:vertical;}
+.checkbox-row{display:flex;align-items:flex-start;gap:8px;font-weight:400;margin:8px 0;font-size:.92rem;}
+.checkbox-row input{margin-top:3px;}
+.actions{position:sticky;bottom:0;background:var(--bg);padding:14px 0;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;}
+button{background:var(--teal);color:#fff;border:none;padding:10px 16px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;}
+button.secondary{background:var(--orange);}
+#save-status{font-size:.85rem;color:var(--muted);}
+footer.prompts-note{margin-top:20px;font-size:.88rem;color:var(--muted);background:#eef3f2;padding:12px 16px;border-radius:8px;}
+footer.prompts-note code{background:#dfe8e6;padding:1px 5px;border-radius:4px;}
+@media (max-width:480px){h1{font-size:1.3rem;}.block{padding:14px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">Module 06</span>
+  <h1>Paid Ads: TikTok, Google & Zalo</h1>
+  <p class="subtitle">Chọn nền tảng phù hợp nhất cho sản phẩm bạn và soạn 1 ý tưởng cụ thể.</p>
+</header>
+
+<div class="intro">
+  So sánh 3 nền tảng dựa trên bảng trong PDF module 06, sau đó chọn 1 nền tảng phù hợp nhất và
+  triển khai chi tiết hơn.
+</div>
+
+<form id="worksheet">
+  <section class="block">
+    <h2>1. Chọn nền tảng phù hợp nhất</h2>
+    <label data-label="Bạn chọn nền tảng nào (TikTok Ads / Google Ads / Zalo Ads) và vì sao?">Bạn chọn nền tảng nào (TikTok Ads / Google Ads / Zalo Ads) và vì sao?</label>
+    <textarea data-field="choice" data-label="Nền tảng đã chọn & lý do" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>2. TikTok — Ý tưởng nội dung video ngắn</h2>
+    <label data-label="Ý tưởng 1 video TikTok ngắn (mô tả cảnh quay, 3 giây đầu nói gì)">Ý tưởng 1 video TikTok ngắn (mô tả cảnh quay, 3 giây đầu nói gì)</label>
+    <textarea data-field="tiktok_idea" data-label="Ý tưởng video TikTok" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>3. Google — Từ khoá tìm kiếm</h2>
+    <label data-label="3 từ khoá 'sẵn sàng mua' khách có thể gõ tìm kiếm">3 từ khoá "sẵn sàng mua" khách có thể gõ tìm kiếm liên quan sản phẩm của bạn</label>
+    <textarea data-field="keywords" data-label="Từ khoá Google Search" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>4. Zalo — Kịch bản chốt đơn qua chat</h2>
+    <label data-label="Câu trả lời mẫu khi khách nhắn Zalo hỏi giá/thông tin sản phẩm">Câu trả lời mẫu khi khách nhắn Zalo hỏi giá/thông tin sản phẩm (ngắn gọn, thân thiện, có CTA)</label>
+    <textarea data-field="zalo_script" data-label="Kịch bản trả lời Zalo" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>✅ Tự đánh giá</h2>
+    <div class="checkbox-row"><input type="checkbox" data-field="s1" data-label="Tôi đã chọn 1 nền tảng dựa trên lý do rõ ràng, không chọn ngẫu nhiên"><span>Tôi đã chọn 1 nền tảng dựa trên lý do rõ ràng, không chọn ngẫu nhiên</span></div>
+    <div class="checkbox-row"><input type="checkbox" data-field="s2" data-label="Tôi đã thử soạn nội dung cụ thể cho cả 3 nền tảng để so sánh"><span>Tôi đã thử soạn nội dung cụ thể cho cả 3 nền tảng để so sánh</span></div>
+  </section>
+
+  <section class="block">
+    <h2>📝 Nhật ký phản tư</h2>
+    <label data-label="Trước module này bạn có biết đến Zalo Ads không? Nhận xét của bạn sau khi học?">Trước module này bạn có biết đến Zalo Ads không? Nhận xét của bạn sau khi học?</label>
+    <textarea data-field="j1" data-label="Nhận xét về Zalo Ads" rows="3"></textarea>
+  </section>
+</form>
+
+<div class="actions">
+  <button onclick="saveDraft()">💾 Lưu tạm</button>
+  <button class="secondary" onclick="exportMarkdown()">⬇️ Xuất bài làm (.md)</button>
+  <span id="save-status"></span>
+</div>
+
+<footer class="prompts-note">
+  📋 Bí chỗ nào? Mở file <code>prompts.md</code> trong cùng thư mục này, copy 1 prompt phù hợp và
+  dán vào chatbot (Claude/ChatGPT) kèm bối cảnh của bạn.
+</footer>
+</div>
+
+<script>
+const MODULE_ID = "06";
+const MODULE_TITLE = "Paid Ads: TikTok, Google & Zalo";
+const STORAGE_KEY = "dmb_module_" + MODULE_ID;
+function collectData(){const data={};document.querySelectorAll('[data-field]').forEach(el=>{data[el.dataset.field]=el.type==='checkbox'?el.checked:el.value;});return data;}
+function saveDraft(){localStorage.setItem(STORAGE_KEY,JSON.stringify(collectData()));const s=document.getElementById('save-status');s.textContent='Đã lưu lúc '+new Date().toLocaleTimeString('vi-VN');setTimeout(()=>s.textContent='',4000);}
+function loadDraft(){const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);document.querySelectorAll('[data-field]').forEach(el=>{const v=data[el.dataset.field];if(v===undefined)return;if(el.type==='checkbox')el.checked=v;else el.value=v;});}
+function exportMarkdown(){saveDraft();let md=`# Bài làm — Module ${MODULE_ID}: ${MODULE_TITLE}\n\nNgày xuất: ${new Date().toLocaleString('vi-VN')}\n\n`;document.querySelectorAll('[data-field]').forEach(el=>{const label=el.dataset.label||el.dataset.field;if(el.type==='checkbox'){md+=`- [${el.checked?'x':' '}] ${label}\n`;}else{md+=`## ${label}\n\n${el.value||'_(chưa điền)_'}\n\n`;}});const blob=new Blob([md],{type:'text/markdown'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`bai-lam-module-${MODULE_ID}-${new Date().toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(url);}
+window.addEventListener('DOMContentLoaded', loadDraft);
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard GA4 Organic (mẫu)</title>
+<link rel="stylesheet" href="shared/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+<style>
+.funnel-bar-row{ display:flex; align-items:center; gap:10px; margin:8px 0; }
+.funnel-bar-label{ width:220px; font-size:.85rem; color:var(--text-secondary); flex-shrink:0; }
+.funnel-bar-track{ flex:1; background:var(--gridline); border-radius:4px; height:22px; position:relative; }
+.funnel-bar-fill{ background:var(--series-1); height:100%; border-radius:4px; min-width:2px; }
+.funnel-bar-value{ width:150px; flex-shrink:0; font-size:.82rem; font-weight:600; color:var(--text-primary); font-variant-numeric:tabular-nums; }
+@media (max-width:600px){ .funnel-bar-label{width:120px; font-size:.78rem;} .funnel-bar-value{width:110px; font-size:.76rem;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">📊 GA4 (Organic)</span>
+  <h1>Dashboard mẫu — Google Analytics 4</h1>
+  <p class="subtitle">Sessions, Users, Engagement rate, nguồn traffic, mini funnel conversion.</p>
+</header>
+
+<div class="disclaimer">⚠️ Dữ liệu minh hoạ để học cách đọc chỉ số — KHÔNG phải benchmark ngành thật.</div>
+
+<nav class="dash-nav">
+  <a href="index.html">← Tất cả dashboard</a>
+  <a href="facebook-ads-dashboard.html">Facebook</a>
+  <a href="google-ads-dashboard.html">Google</a>
+  <a href="tiktok-ads-dashboard.html">TikTok</a>
+  <a href="zalo-ads-dashboard.html">Zalo</a>
+  <a href="ga4-organic-dashboard.html" class="active">GA4</a>
+</nav>
+
+<div class="kpi-grid" id="kpi-grid"></div>
+
+<section class="chart-card">
+  <h2>Sessions & Users theo ngày</h2>
+  <p class="chart-note">Sessions = số lượt truy cập, Users = số người truy cập thực tế.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-sessions"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('sessions-table', this)">Xem dạng bảng</button>
+  <div id="sessions-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Nguồn traffic</h2>
+  <p class="chart-note">Khách đến từ đâu — kết hợp với UTM (module 09) để biết chính xác chiến dịch nào mang traffic.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-sources"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('sources-table', this)">Xem dạng bảng</button>
+  <div id="sources-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Mini Funnel Conversion</h2>
+  <p class="chart-note">Số người rớt qua từng bước trên website — càng xuống dưới càng ít người, đúng như lý thuyết funnel ở module 02.</p>
+  <div id="funnel-bars"></div>
+</section>
+</div>
+
+<script src="shared/sample-data.js"></script>
+<script>
+const d = SAMPLE.ga4;
+const cd = chartDefaults();
+
+const totalSessions = d.sessions.reduce((a,b)=>a+b,0);
+const totalUsers = d.users.reduce((a,b)=>a+b,0);
+const avgEng = (d.engagementRate.reduce((a,b)=>a+b,0)/d.engagementRate.length);
+document.getElementById('kpi-grid').innerHTML = `
+  <div class="kpi-card"><div class="kpi-label">Tổng Sessions (7 ngày)</div><div class="kpi-value">${totalSessions.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">Tổng Users</div><div class="kpi-value">${totalUsers.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">Engagement rate TB</div><div class="kpi-value">${avgEng.toFixed(1)}%</div></div>
+`;
+
+new Chart(document.getElementById('chart-sessions'), {
+  type:'line',
+  data:{ labels:SAMPLE.labels7d, datasets:[
+    { label:'Sessions', data:d.sessions, borderColor:cd.series[0], backgroundColor:cd.series[0]+'33', fill:true, tension:.3, pointRadius:4, borderWidth:2 },
+    { label:'Users', data:d.users, borderColor:cd.series[1], backgroundColor:cd.series[1]+'22', fill:true, tension:.3, pointRadius:4, borderWidth:2 }
+  ]},
+  options:{ responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:true, position:'top', labels:{color:cd.text, boxWidth:12}}, tooltip:{mode:'index', intersect:false} },
+    scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+  }
+});
+
+new Chart(document.getElementById('chart-sources'), {
+  type:'bar',
+  data:{ labels:d.sources.map(s=>s.name), datasets:[{ label:'Sessions', data:d.sources.map(s=>s.sessions), backgroundColor:cd.series, borderRadius:4 }]},
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+    scales:{ x:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, y:{ grid:{display:false}, ticks:{color:cd.text} } }
+  }
+});
+
+renderTable('sessions-table-holder', ['Ngày','Sessions','Users'], SAMPLE.labels7d.map((l,i)=>[l, d.sessions[i], d.users[i]]));
+document.getElementById('sessions-table-holder').firstElementChild.id = 'sessions-table';
+renderTable('sources-table-holder', ['Nguồn','Sessions','Tỷ trọng'], d.sources.map(s=>[s.name, s.sessions.toLocaleString('vi-VN'), s.share+'%']));
+document.getElementById('sources-table-holder').firstElementChild.id = 'sources-table';
+
+const maxCount = d.funnel[0].count;
+document.getElementById('funnel-bars').innerHTML = d.funnel.map(f => {
+  const pct = Math.round(f.count/maxCount*100);
+  return `<div class="funnel-bar-row">
+    <div class="funnel-bar-label">${f.stage}</div>
+    <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:${pct}%"></div></div>
+    <div class="funnel-bar-value">${f.count.toLocaleString('vi-VN')} (${pct}%)</div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Zalo Ads (mẫu)</title>
+<link rel="stylesheet" href="shared/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">💬 Zalo Ads</span>
+  <h1>Dashboard mẫu — Zalo Ads</h1>
+  <p class="subtitle">Reach, CTR, CPC, tăng trưởng follower Zalo OA.</p>
+</header>
+
+<div class="disclaimer">⚠️ Dữ liệu minh hoạ để học cách đọc chỉ số — KHÔNG phải benchmark ngành thật.</div>
+
+<nav class="dash-nav">
+  <a href="index.html">← Tất cả dashboard</a>
+  <a href="facebook-ads-dashboard.html">Facebook</a>
+  <a href="google-ads-dashboard.html">Google</a>
+  <a href="tiktok-ads-dashboard.html">TikTok</a>
+  <a href="zalo-ads-dashboard.html" class="active">Zalo</a>
+  <a href="ga4-organic-dashboard.html">GA4</a>
+</nav>
+
+<div class="kpi-grid" id="kpi-grid"></div>
+
+<section class="chart-card">
+  <h2>Reach theo ngày</h2>
+  <p class="chart-note">Số người nhìn thấy quảng cáo Zalo mỗi ngày.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-reach"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('reach-table', this)">Xem dạng bảng</button>
+  <div id="reach-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Follower Zalo OA tăng thêm mỗi ngày</h2>
+  <p class="chart-note">Số người theo dõi mới trên Zalo OA — chỉ số quan trọng cho việc chăm sóc khách về sau.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-follower"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('follower-table', this)">Xem dạng bảng</button>
+  <div id="follower-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>So sánh chiến dịch</h2>
+  <p class="chart-note">Reach, CTR, CPC theo từng chiến dịch Zalo Ads.</p>
+  <div id="campaign-table-holder"></div>
+</section>
+</div>
+
+<script src="shared/sample-data.js"></script>
+<script>
+const d = SAMPLE.zalo;
+const cd = chartDefaults();
+
+const totalReach = d.reach.reduce((a,b)=>a+b,0);
+const totalFollower = d.followerGrowth.reduce((a,b)=>a+b,0);
+document.getElementById('kpi-grid').innerHTML = `
+  <div class="kpi-card"><div class="kpi-label">Tổng Reach (7 ngày)</div><div class="kpi-value">${totalReach.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">Follower mới (7 ngày)</div><div class="kpi-value">+${totalFollower}</div></div>
+`;
+
+function lineChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'line',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, borderColor:color, backgroundColor:color+'33', fill:true, tension:.3, pointRadius:4, borderWidth:2 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+function barChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'bar',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, backgroundColor:color, borderRadius:4 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+
+lineChart('chart-reach', d.reach, cd.series[0], 'Reach');
+barChart('chart-follower', d.followerGrowth, cd.series[4], 'Follower mới');
+
+renderTable('reach-table-holder', ['Ngày','Reach'], SAMPLE.labels7d.map((l,i)=>[l, d.reach[i].toLocaleString('vi-VN')]));
+document.getElementById('reach-table-holder').firstElementChild.id = 'reach-table';
+renderTable('follower-table-holder', ['Ngày','Follower mới'], SAMPLE.labels7d.map((l,i)=>[l, '+'+d.followerGrowth[i]]));
+document.getElementById('follower-table-holder').firstElementChild.id = 'follower-table';
+
+renderTable('campaign-table-holder', ['Chiến dịch','Reach','CTR','CPC'],
+  d.campaigns.map(c=>[c.name, c.reach.toLocaleString('vi-VN'), c.ctr+'%', c.cpc.toLocaleString('vi-VN')+'đ']));
+document.getElementById('campaign-table-holder').firstElementChild.classList.add('show');
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 09 — Đo lường & Phân tích</title>
+<style>
+:root{--teal:#0f3d3e;--orange:#e08e45;--bg:#faf9f6;--card:#fff;--border:#e2ded4;--text:#1a1a1a;--muted:#666;--good:#1b7a4d;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0 16px 60px;}
+.wrap{max-width:760px;margin:0 auto;}
+header.top{padding:28px 0 16px;}
+.badge{display:inline-block;background:var(--teal);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:.03em;}
+h1{font-size:1.6rem;margin:.5rem 0 .3rem;color:var(--teal);}
+.subtitle{color:var(--muted);margin:0 0 1rem;}
+.intro{background:#fff4e6;border-left:4px solid var(--orange);padding:12px 16px;border-radius:6px;margin-bottom:20px;font-size:.95rem;}
+.block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.block h2{font-size:1.05rem;color:var(--teal);margin-top:0;border-left:4px solid var(--orange);padding-left:10px;}
+label{display:block;font-weight:600;margin:14px 0 6px;font-size:.92rem;}
+label:first-of-type{margin-top:0;}
+textarea,input[type=text],input[type=number]{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:.92rem;resize:vertical;}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.calc-grid label{margin:6px 0 4px;}
+.result{background:#eef7f0;border:1px solid #cfe8d6;border-radius:8px;padding:10px 14px;margin-top:10px;font-weight:600;color:var(--good);}
+.checkbox-row{display:flex;align-items:flex-start;gap:8px;font-weight:400;margin:8px 0;font-size:.92rem;}
+.checkbox-row input{margin-top:3px;}
+.actions{position:sticky;bottom:0;background:var(--bg);padding:14px 0;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;}
+button{background:var(--teal);color:#fff;border:none;padding:10px 16px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;}
+button.secondary{background:var(--orange);}
+#save-status{font-size:.85rem;color:var(--muted);}
+footer.prompts-note{margin-top:20px;font-size:.88rem;color:var(--muted);background:#eef3f2;padding:12px 16px;border-radius:8px;}
+footer.prompts-note code{background:#dfe8e6;padding:1px 5px;border-radius:4px;}
+@media (max-width:480px){h1{font-size:1.3rem;}.block{padding:14px;}.calc-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">Module 09</span>
+  <h1>Đo lường & Phân tích</h1>
+  <p class="subtitle">Chọn KPI, gắn UTM, và luyện tính chỉ số quảng cáo cơ bản.</p>
+</header>
+
+<div class="intro">
+  Bài tập tính toán bên dưới tự động tính CTR/CPC/CPA/ROAS khi bạn nhập số liệu — dùng để luyện
+  quen công thức, không phải số liệu thật.
+</div>
+
+<form id="worksheet">
+  <section class="block">
+    <h2>1. Chọn KPI chính</h2>
+    <label data-label="Mục tiêu chiến dịch chính của bạn là gì?">Mục tiêu chiến dịch chính của bạn là gì?</label>
+    <input type="text" data-field="goal" data-label="Mục tiêu chiến dịch">
+    <label data-label="KPI chính bạn sẽ theo dõi cho mục tiêu đó">KPI chính bạn sẽ theo dõi cho mục tiêu đó (Reach/CPA/ROAS/tỷ lệ mua lại...)</label>
+    <input type="text" data-field="kpi" data-label="KPI chính">
+  </section>
+
+  <section class="block">
+    <h2>2. Gắn UTM mẫu</h2>
+    <label data-label="Viết 1 link UTM mẫu cho 1 chiến dịch cụ thể (utm_source, utm_medium, utm_campaign)">Viết 1 link UTM mẫu cho 1 chiến dịch cụ thể (utm_source, utm_medium, utm_campaign)</label>
+    <input type="text" data-field="utm" data-label="Link UTM mẫu" placeholder="?utm_source=...&utm_medium=...&utm_campaign=...">
+  </section>
+
+  <section class="block">
+    <h2>3. Luyện tính chỉ số (tự động)</h2>
+    <div class="calc-grid">
+      <div><label>Chi tiêu quảng cáo (VNĐ)</label><input type="number" id="calc-spend" value="2000000"></div>
+      <div><label>Impressions</label><input type="number" id="calc-impressions" value="50000"></div>
+      <div><label>Clicks</label><input type="number" id="calc-clicks" value="800"></div>
+      <div><label>Số đơn hàng</label><input type="number" id="calc-orders" value="20"></div>
+      <div><label>Doanh thu/đơn trung bình (VNĐ)</label><input type="number" id="calc-aov" value="300000"></div>
+    </div>
+    <div class="result" id="calc-result">Nhập số liệu để xem kết quả CTR, CPC, CPA, ROAS.</div>
+  </section>
+
+  <section class="block">
+    <h2>✅ Tự đánh giá</h2>
+    <div class="checkbox-row"><input type="checkbox" data-field="s1" data-label="Tôi tự tính được CTR, CPC, CPA, ROAS mà không cần công cụ tính sẵn"><span>Tôi tự tính được CTR, CPC, CPA, ROAS mà không cần công cụ tính sẵn</span></div>
+    <div class="checkbox-row"><input type="checkbox" data-field="s2" data-label="Tôi đã chọn đúng 1 KPI chính phù hợp với mục tiêu, không nhìn dàn trải"><span>Tôi đã chọn đúng 1 KPI chính phù hợp với mục tiêu, không nhìn dàn trải</span></div>
+  </section>
+
+  <section class="block">
+    <h2>📝 Nhật ký phản tư</h2>
+    <label data-label="Chỉ số nào trước đây bạn hiểu sai hoặc chưa từng để ý?">Chỉ số nào trước đây bạn hiểu sai hoặc chưa từng để ý?</label>
+    <textarea data-field="j1" data-label="Chỉ số từng hiểu sai" rows="3"></textarea>
+  </section>
+</form>
+
+<div class="actions">
+  <button onclick="saveDraft()">💾 Lưu tạm</button>
+  <button class="secondary" onclick="exportMarkdown()">⬇️ Xuất bài làm (.md)</button>
+  <span id="save-status"></span>
+</div>
+
+<footer class="prompts-note">
+  📋 Bí chỗ nào? Mở file <code>prompts.md</code> trong cùng thư mục này, copy 1 prompt phù hợp và
+  dán vào chatbot (Claude/ChatGPT) kèm bối cảnh của bạn.
+</footer>
+</div>
+
+<script>
+const MODULE_ID = "09";
+const MODULE_TITLE = "Đo lường & Phân tích";
+const STORAGE_KEY = "dmb_module_" + MODULE_ID;
+
+function fmt(n){ return new Intl.NumberFormat('vi-VN').format(Math.round(n)); }
+function runCalc(){
+  const spend = parseFloat(document.getElementById('calc-spend').value) || 0;
+  const impressions = parseFloat(document.getElementById('calc-impressions').value) || 0;
+  const clicks = parseFloat(document.getElementById('calc-clicks').value) || 0;
+  const orders = parseFloat(document.getElementById('calc-orders').value) || 0;
+  const aov = parseFloat(document.getElementById('calc-aov').value) || 0;
+  const ctr = impressions ? (clicks/impressions*100) : 0;
+  const cpc = clicks ? (spend/clicks) : 0;
+  const cpa = orders ? (spend/orders) : 0;
+  const revenue = orders*aov;
+  const roas = spend ? (revenue/spend) : 0;
+  document.getElementById('calc-result').innerHTML =
+    `CTR: ${ctr.toFixed(2)}% &nbsp;|&nbsp; CPC: ${fmt(cpc)}đ &nbsp;|&nbsp; CPA: ${fmt(cpa)}đ &nbsp;|&nbsp; Doanh thu: ${fmt(revenue)}đ &nbsp;|&nbsp; ROAS: ${roas.toFixed(2)}`;
+}
+['calc-spend','calc-impressions','calc-clicks','calc-orders','calc-aov'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', runCalc);
+});
+
+function collectData(){const data={};document.querySelectorAll('[data-field]').forEach(el=>{data[el.dataset.field]=el.type==='checkbox'?el.checked:el.value;});return data;}
+function saveDraft(){localStorage.setItem(STORAGE_KEY,JSON.stringify(collectData()));const s=document.getElementById('save-status');s.textContent='Đã lưu lúc '+new Date().toLocaleTimeString('vi-VN');setTimeout(()=>s.textContent='',4000);}
+function loadDraft(){const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);document.querySelectorAll('[data-field]').forEach(el=>{const v=data[el.dataset.field];if(v===undefined)return;if(el.type==='checkbox')el.checked=v;else el.value=v;});}
+function exportMarkdown(){saveDraft();let md=`# Bài làm — Module ${MODULE_ID}: ${MODULE_TITLE}\n\nNgày xuất: ${new Date().toLocaleString('vi-VN')}\n\n`;document.querySelectorAll('[data-field]').forEach(el=>{const label=el.dataset.label||el.dataset.field;if(el.type==='checkbox'){md+=`- [${el.checked?'x':' '}] ${label}\n`;}else{md+=`## ${label}\n\n${el.value||'_(chưa điền)_'}\n\n`;}});md += `## Kết quả luyện tính chỉ số\n\n${document.getElementById('calc-result').textContent}\n\n`;const blob=new Blob([md],{type:'text/markdown'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`bai-lam-module-${MODULE_ID}-${new Date().toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(url);}
+window.addEventListener('DOMContentLoaded', ()=>{loadDraft();runCalc();});
+</script>
+</body>
+</html>

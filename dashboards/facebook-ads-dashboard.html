@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Facebook Ads (mẫu)</title>
+<link rel="stylesheet" href="shared/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">📘 Facebook Ads</span>
+  <h1>Dashboard mẫu — Facebook & Instagram Ads</h1>
+  <p class="subtitle">Reach, CTR, CPC, CPA, ROAS, chi tiêu theo chiến dịch.</p>
+</header>
+
+<div class="disclaimer">⚠️ Dữ liệu minh hoạ để học cách đọc chỉ số — KHÔNG phải benchmark ngành thật.</div>
+
+<nav class="dash-nav">
+  <a href="index.html">← Tất cả dashboard</a>
+  <a href="facebook-ads-dashboard.html" class="active">Facebook</a>
+  <a href="google-ads-dashboard.html">Google</a>
+  <a href="tiktok-ads-dashboard.html">TikTok</a>
+  <a href="zalo-ads-dashboard.html">Zalo</a>
+  <a href="ga4-organic-dashboard.html">GA4</a>
+</nav>
+
+<div class="kpi-grid" id="kpi-grid"></div>
+
+<section class="chart-card">
+  <h2>Reach theo ngày (7 ngày gần nhất)</h2>
+  <p class="chart-note">Số người nhìn thấy quảng cáo mỗi ngày.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-reach"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('reach-table', this)">Xem dạng bảng</button>
+  <div id="reach-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>Clicks theo ngày</h2>
+  <p class="chart-note">Số lượt click vào quảng cáo mỗi ngày.</p>
+  <div class="chart-canvas-wrap"><canvas id="chart-clicks"></canvas></div>
+  <button class="table-toggle" onclick="toggleTable('clicks-table', this)">Xem dạng bảng</button>
+  <div id="clicks-table-holder"></div>
+</section>
+
+<section class="chart-card">
+  <h2>So sánh chiến dịch</h2>
+  <p class="chart-note">Reach, CTR, CPC, CPA, ROAS theo từng chiến dịch — dùng để quyết định tăng/giảm ngân sách.</p>
+  <div id="campaign-table-holder"></div>
+</section>
+</div>
+
+<script src="shared/sample-data.js"></script>
+<script>
+const d = SAMPLE.facebook;
+const cd = chartDefaults();
+
+// KPI tiles
+const totalReach = d.reach.reduce((a,b)=>a+b,0);
+const totalImpressions = d.impressions.reduce((a,b)=>a+b,0);
+const totalClicks = d.clicks.reduce((a,b)=>a+b,0);
+const totalSpend = d.spend.reduce((a,b)=>a+b,0);
+const ctr = (totalClicks/totalImpressions*100); // CTR = Clicks ÷ Impressions × 100% (đúng công thức module 09)
+const avgCpc = totalSpend/totalClicks;
+document.getElementById('kpi-grid').innerHTML = `
+  <div class="kpi-card"><div class="kpi-label">Tổng Reach (7 ngày)</div><div class="kpi-value">${totalReach.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">Tổng Clicks</div><div class="kpi-value">${totalClicks.toLocaleString('vi-VN')}</div></div>
+  <div class="kpi-card"><div class="kpi-label">CTR</div><div class="kpi-value">${ctr.toFixed(2)}%</div></div>
+  <div class="kpi-card"><div class="kpi-label">CPC trung bình</div><div class="kpi-value">${Math.round(avgCpc).toLocaleString('vi-VN')}đ</div></div>
+`;
+
+function lineChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'line',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, borderColor:color, backgroundColor:color+'33', fill:true, tension:.3, pointRadius:4, borderWidth:2 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+function barChart(ctxId, data, color, labelName){
+  return new Chart(document.getElementById(ctxId), {
+    type:'bar',
+    data:{ labels:SAMPLE.labels7d, datasets:[{ label:labelName, data:data, backgroundColor:color, borderRadius:4 }]},
+    options:{ responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false}, tooltip:{mode:'index', intersect:false} },
+      scales:{ y:{ grid:{color:cd.grid}, ticks:{color:cd.text} }, x:{ grid:{display:false}, ticks:{color:cd.text} } }
+    }
+  });
+}
+
+lineChart('chart-reach', d.reach, cd.series[0], 'Reach');
+barChart('chart-clicks', d.clicks, cd.series[1], 'Clicks');
+
+renderTable('reach-table-holder', ['Ngày','Reach'], SAMPLE.labels7d.map((l,i)=>[l, d.reach[i].toLocaleString('vi-VN')]));
+document.getElementById('reach-table-holder').firstElementChild.id = 'reach-table';
+renderTable('clicks-table-holder', ['Ngày','Clicks'], SAMPLE.labels7d.map((l,i)=>[l, d.clicks[i]]));
+document.getElementById('clicks-table-holder').firstElementChild.id = 'clicks-table';
+
+renderTable('campaign-table-holder', ['Chiến dịch','Reach','CTR','CPC','CPA','ROAS'],
+  d.campaigns.map(c=>[c.name, c.reach.toLocaleString('vi-VN'), c.ctr+'%', c.cpc.toLocaleString('vi-VN')+'đ', c.cpa.toLocaleString('vi-VN')+'đ', c.roas]));
+document.getElementById('campaign-table-holder').firstElementChild.classList.add('show');
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "last_updated": "2026-09-20",
+  "current_module": "00",
+  "next_action_suggestion": "Bắt đầu module 00 — Cài đặt công cụ. Đọc README.md để biết quy trình học 1 module.",
+  "modules": [
+    { "module_id": "00", "ten_module": "Cài đặt công cụ", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "01", "ten_module": "Tổng quan Digital Marketing & Customer Journey", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "02", "ten_module": "Marketing Funnel", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "03", "ten_module": "Buyer Persona & Nghiên cứu thị trường", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "04", "ten_module": "Hệ sinh thái nền tảng Việt Nam", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "05", "ten_module": "Paid Ads: Facebook & Instagram Ads", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "06", "ten_module": "Paid Ads: TikTok, Google & Zalo Ads", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "07", "ten_module": "SEO cơ bản & Content cho Website/Blog", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "08", "ten_module": "Organic: Xây kênh & Cộng đồng", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "09", "ten_module": "Đo lường & Phân tích", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "10", "ten_module": "Capstone: Mini-Funnel hoàn chỉnh", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" }
+  ]
+}

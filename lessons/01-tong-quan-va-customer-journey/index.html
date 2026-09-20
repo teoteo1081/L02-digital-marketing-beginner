@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 01 — Customer Journey</title>
+<style>
+:root{--teal:#0f3d3e;--orange:#e08e45;--bg:#faf9f6;--card:#fff;--border:#e2ded4;--text:#1a1a1a;--muted:#666;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0 16px 60px;}
+.wrap{max-width:760px;margin:0 auto;}
+header.top{padding:28px 0 16px;}
+.badge{display:inline-block;background:var(--teal);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:.03em;}
+h1{font-size:1.6rem;margin:.5rem 0 .3rem;color:var(--teal);}
+.subtitle{color:var(--muted);margin:0 0 1rem;}
+.intro{background:#fff4e6;border-left:4px solid var(--orange);padding:12px 16px;border-radius:6px;margin-bottom:20px;font-size:.95rem;}
+.block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.block h2{font-size:1.05rem;color:var(--teal);margin-top:0;border-left:4px solid var(--orange);padding-left:10px;}
+label{display:block;font-weight:600;margin:14px 0 6px;font-size:.92rem;}
+label:first-of-type{margin-top:0;}
+textarea,input[type=text]{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:.92rem;resize:vertical;}
+.checkbox-row{display:flex;align-items:flex-start;gap:8px;font-weight:400;margin:8px 0;font-size:.92rem;}
+.checkbox-row input{margin-top:3px;}
+.step-grid{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:start;}
+.step-num{background:var(--teal);color:#fff;font-weight:700;font-size:.8rem;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;margin-top:6px;}
+.actions{position:sticky;bottom:0;background:var(--bg);padding:14px 0;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;}
+button{background:var(--teal);color:#fff;border:none;padding:10px 16px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;}
+button.secondary{background:var(--orange);}
+#save-status{font-size:.85rem;color:var(--muted);}
+footer.prompts-note{margin-top:20px;font-size:.88rem;color:var(--muted);background:#eef3f2;padding:12px 16px;border-radius:8px;}
+footer.prompts-note code{background:#dfe8e6;padding:1px 5px;border-radius:4px;}
+@media (max-width:480px){h1{font-size:1.3rem;}.block{padding:14px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">Module 01</span>
+  <h1>Tổng quan Digital Marketing & Customer Journey</h1>
+  <p class="subtitle">Vẽ hành trình khách hàng thật cho sản phẩm/dịch vụ bạn chọn ở module 00.</p>
+</header>
+
+<div class="intro">
+  Đọc lại ví dụ hành trình khách hàng mỹ phẩm trong file PDF trước khi làm bài này. Mục tiêu: vẽ
+  được hành trình khách hàng thật của sản phẩm bạn, có ít nhất 4 bước và các điểm chạm cụ thể.
+</div>
+
+<form id="worksheet">
+  <section class="block">
+    <h2>1. Sản phẩm/dịch vụ của bạn</h2>
+    <label data-label="Mô tả ngắn sản phẩm/dịch vụ (nhắc lại từ module 00, có thể tinh chỉnh)">Mô tả ngắn sản phẩm/dịch vụ (nhắc lại từ module 00, có thể tinh chỉnh)</label>
+    <textarea data-field="product" data-label="Mô tả sản phẩm/dịch vụ" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>2. Hành trình khách hàng (tối thiểu 4 bước)</h2>
+    <div class="step-grid">
+      <div class="step-num">1</div>
+      <div><label data-label="Bước 1 — Khách biết đến bạn qua đâu?">Khách biết đến bạn qua đâu? (kênh nào, nội dung dạng gì)</label>
+      <textarea data-field="step1" data-label="Bước 1 — Nhận biết" rows="2"></textarea></div>
+
+      <div class="step-num">2</div>
+      <div><label data-label="Bước 2 — Khách tìm hiểu thêm ở đâu?">Khách tìm hiểu thêm ở đâu? (Fanpage, review, Group...)</label>
+      <textarea data-field="step2" data-label="Bước 2 — Tìm hiểu" rows="2"></textarea></div>
+
+      <div class="step-num">3</div>
+      <div><label data-label="Bước 3 — Khách liên hệ/hỏi mua bằng cách nào?">Khách liên hệ/hỏi mua bằng cách nào? (Zalo, Messenger, hotline...)</label>
+      <textarea data-field="step3" data-label="Bước 3 — Liên hệ" rows="2"></textarea></div>
+
+      <div class="step-num">4</div>
+      <div><label data-label="Bước 4 — Khách quyết định mua ở đâu, vì sao?">Khách quyết định mua ở đâu, vì sao chọn bạn thay vì đối thủ?</label>
+      <textarea data-field="step4" data-label="Bước 4 — Quyết định mua" rows="2"></textarea></div>
+
+      <div class="step-num">5</div>
+      <div><label data-label="Bước 5 (nếu có) — Điều gì khiến khách quay lại mua tiếp?">Điều gì khiến khách quay lại mua tiếp / giới thiệu người khác?</label>
+      <textarea data-field="step5" data-label="Bước 5 — Quay lại (retention)" rows="2"></textarea></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>3. Điểm chạm (touchpoint)</h2>
+    <label data-label="Liệt kê ít nhất 3 điểm chạm khác nhau trong hành trình trên">Liệt kê ít nhất 3 điểm chạm khác nhau trong hành trình trên (ví dụ: TikTok, Facebook Group, Zalo, Shopee...)</label>
+    <textarea data-field="touchpoints" data-label="Danh sách điểm chạm" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>✅ Tự đánh giá</h2>
+    <div class="checkbox-row"><input type="checkbox" data-field="s1" data-label="Tôi đã mô tả rõ sản phẩm/dịch vụ"><span>Tôi đã mô tả rõ sản phẩm/dịch vụ</span></div>
+    <div class="checkbox-row"><input type="checkbox" data-field="s2" data-label="Tôi đã điền đủ tối thiểu 4 bước hành trình khách hàng"><span>Tôi đã điền đủ tối thiểu 4 bước hành trình khách hàng</span></div>
+    <div class="checkbox-row"><input type="checkbox" data-field="s3" data-label="Tôi đã xác định được ít nhất 3 điểm chạm cụ thể"><span>Tôi đã xác định được ít nhất 3 điểm chạm cụ thể</span></div>
+  </section>
+
+  <section class="block">
+    <h2>📝 Nhật ký phản tư</h2>
+    <label data-label="Điều gì bất ngờ với bạn khi vẽ lại hành trình khách hàng thật?">Điều gì bất ngờ với bạn khi vẽ lại hành trình khách hàng thật (so với bạn nghĩ trước đây)?</label>
+    <textarea data-field="j1" data-label="Điều bất ngờ" rows="3"></textarea>
+    <label data-label="Bạn đang bỏ trống điểm chạm nào trong hành trình này?">Bạn đang bỏ trống/chưa đầu tư điểm chạm nào trong hành trình này?</label>
+    <textarea data-field="j2" data-label="Điểm chạm đang bỏ trống" rows="3"></textarea>
+  </section>
+</form>
+
+<div class="actions">
+  <button onclick="saveDraft()">💾 Lưu tạm</button>
+  <button class="secondary" onclick="exportMarkdown()">⬇️ Xuất bài làm (.md)</button>
+  <span id="save-status"></span>
+</div>
+
+<footer class="prompts-note">
+  📋 Bí chỗ nào? Mở file <code>prompts.md</code> trong cùng thư mục này, copy 1 prompt phù hợp và
+  dán vào chatbot (Claude/ChatGPT) kèm bối cảnh của bạn.
+</footer>
+</div>
+
+<script>
+const MODULE_ID = "01";
+const MODULE_TITLE = "Tổng quan Digital Marketing & Customer Journey";
+const STORAGE_KEY = "dmb_module_" + MODULE_ID;
+function collectData(){const data={};document.querySelectorAll('[data-field]').forEach(el=>{data[el.dataset.field]=el.type==='checkbox'?el.checked:el.value;});return data;}
+function saveDraft(){localStorage.setItem(STORAGE_KEY,JSON.stringify(collectData()));const s=document.getElementById('save-status');s.textContent='Đã lưu lúc '+new Date().toLocaleTimeString('vi-VN');setTimeout(()=>s.textContent='',4000);}
+function loadDraft(){const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);document.querySelectorAll('[data-field]').forEach(el=>{const v=data[el.dataset.field];if(v===undefined)return;if(el.type==='checkbox')el.checked=v;else el.value=v;});}
+function exportMarkdown(){saveDraft();let md=`# Bài làm — Module ${MODULE_ID}: ${MODULE_TITLE}\n\nNgày xuất: ${new Date().toLocaleString('vi-VN')}\n\n`;document.querySelectorAll('[data-field]').forEach(el=>{const label=el.dataset.label||el.dataset.field;if(el.type==='checkbox'){md+=`- [${el.checked?'x':' '}] ${label}\n`;}else{md+=`## ${label}\n\n${el.value||'_(chưa điền)_'}\n\n`;}});const blob=new Blob([md],{type:'text/markdown'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`bai-lam-module-${MODULE_ID}-${new Date().toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(url);}
+window.addEventListener('DOMContentLoaded', loadDraft);
+</script>
+</body>
+</html>

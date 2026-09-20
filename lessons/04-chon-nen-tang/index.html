@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 04 — Chọn nền tảng</title>
+<style>
+:root{--teal:#0f3d3e;--orange:#e08e45;--bg:#faf9f6;--card:#fff;--border:#e2ded4;--text:#1a1a1a;--muted:#666;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0 16px 60px;}
+.wrap{max-width:760px;margin:0 auto;}
+header.top{padding:28px 0 16px;}
+.badge{display:inline-block;background:var(--teal);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;letter-spacing:.03em;}
+h1{font-size:1.6rem;margin:.5rem 0 .3rem;color:var(--teal);}
+.subtitle{color:var(--muted);margin:0 0 1rem;}
+.intro{background:#fff4e6;border-left:4px solid var(--orange);padding:12px 16px;border-radius:6px;margin-bottom:20px;font-size:.95rem;}
+.block{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.block h2{font-size:1.05rem;color:var(--teal);margin-top:0;border-left:4px solid var(--orange);padding-left:10px;}
+.platform{border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:12px;background:#fbfaf7;}
+.platform .p-name{font-weight:700;color:var(--teal);font-size:.95rem;}
+.radio-row{display:flex;gap:14px;margin:6px 0;font-size:.9rem;}
+.radio-row label{display:flex;align-items:center;gap:4px;font-weight:400;margin:0;}
+label{display:block;font-weight:600;margin:14px 0 6px;font-size:.92rem;}
+label:first-of-type{margin-top:0;}
+textarea,input[type=text]{width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid var(--border);border-radius:6px;font-family:inherit;font-size:.92rem;resize:vertical;}
+.checkbox-row{display:flex;align-items:flex-start;gap:8px;font-weight:400;margin:8px 0;font-size:.92rem;}
+.checkbox-row input{margin-top:3px;}
+.actions{position:sticky;bottom:0;background:var(--bg);padding:14px 0;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;}
+button{background:var(--teal);color:#fff;border:none;padding:10px 16px;border-radius:6px;font-size:.9rem;cursor:pointer;font-weight:600;}
+button.secondary{background:var(--orange);}
+#save-status{font-size:.85rem;color:var(--muted);}
+footer.prompts-note{margin-top:20px;font-size:.88rem;color:var(--muted);background:#eef3f2;padding:12px 16px;border-radius:8px;}
+footer.prompts-note code{background:#dfe8e6;padding:1px 5px;border-radius:4px;}
+@media (max-width:480px){h1{font-size:1.3rem;}.block{padding:14px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <span class="badge">Module 04</span>
+  <h1>Hệ sinh thái nền tảng Việt Nam</h1>
+  <p class="subtitle">Đánh giá & chọn 2-3 kênh chính phù hợp với persona của bạn.</p>
+</header>
+
+<div class="intro">
+  Với mỗi nền tảng, đánh giá "Phù hợp?" dựa trên persona (module 03) và loại sản phẩm của bạn, rồi
+  ghi lý do ngắn gọn.
+</div>
+
+<form id="worksheet">
+  <section class="block">
+    <h2>1. Đánh giá từng nền tảng</h2>
+
+    <div class="platform">
+      <div class="p-name">Facebook (Page/Group/Ads)</div>
+      <div class="radio-row">
+        <label><input type="radio" name="fb" data-field="fb_fit" value="Có" data-label="Facebook — Phù hợp?"> Phù hợp</label>
+        <label><input type="radio" name="fb" data-field="fb_fit" value="Không"> Không phù hợp</label>
+      </div>
+      <textarea data-field="fb_reason" data-label="Facebook — Lý do" rows="2" placeholder="Lý do..."></textarea>
+    </div>
+
+    <div class="platform">
+      <div class="p-name">Zalo (OA/Ads)</div>
+      <div class="radio-row">
+        <label><input type="radio" name="zalo" data-field="zalo_fit" value="Có" data-label="Zalo — Phù hợp?"> Phù hợp</label>
+        <label><input type="radio" name="zalo" data-field="zalo_fit" value="Không"> Không phù hợp</label>
+      </div>
+      <textarea data-field="zalo_reason" data-label="Zalo — Lý do" rows="2" placeholder="Lý do..."></textarea>
+    </div>
+
+    <div class="platform">
+      <div class="p-name">TikTok (organic/Ads/Shop)</div>
+      <div class="radio-row">
+        <label><input type="radio" name="tiktok" data-field="tiktok_fit" value="Có" data-label="TikTok — Phù hợp?"> Phù hợp</label>
+        <label><input type="radio" name="tiktok" data-field="tiktok_fit" value="Không"> Không phù hợp</label>
+      </div>
+      <textarea data-field="tiktok_reason" data-label="TikTok — Lý do" rows="2" placeholder="Lý do..."></textarea>
+    </div>
+
+    <div class="platform">
+      <div class="p-name">Google (Search/Display/YouTube)</div>
+      <div class="radio-row">
+        <label><input type="radio" name="google" data-field="google_fit" value="Có" data-label="Google — Phù hợp?"> Phù hợp</label>
+        <label><input type="radio" name="google" data-field="google_fit" value="Không"> Không phù hợp</label>
+      </div>
+      <textarea data-field="google_reason" data-label="Google — Lý do" rows="2" placeholder="Lý do..."></textarea>
+    </div>
+
+    <div class="platform">
+      <div class="p-name">Shopee / TikTok Shop (sàn TMĐT)</div>
+      <div class="radio-row">
+        <label><input type="radio" name="shopee" data-field="shopee_fit" value="Có" data-label="Shopee/TikTok Shop — Phù hợp?"> Phù hợp</label>
+        <label><input type="radio" name="shopee" data-field="shopee_fit" value="Không"> Không phù hợp</label>
+      </div>
+      <textarea data-field="shopee_reason" data-label="Shopee/TikTok Shop — Lý do" rows="2" placeholder="Lý do..."></textarea>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>2. Kết luận</h2>
+    <label data-label="2-3 kênh chính bạn chọn, theo thứ tự ưu tiên">2-3 kênh chính bạn chọn, theo thứ tự ưu tiên</label>
+    <textarea data-field="final_choice" data-label="Kênh chính đã chọn" rows="3"></textarea>
+  </section>
+
+  <section class="block">
+    <h2>✅ Tự đánh giá</h2>
+    <div class="checkbox-row"><input type="checkbox" data-field="s1" data-label="Tôi đã đánh giá cả 5 nền tảng, không bỏ qua nền tảng nào"><span>Tôi đã đánh giá cả 5 nền tảng, không bỏ qua nền tảng nào</span></div>
+    <div class="checkbox-row"><input type="checkbox" data-field="s2" data-label="Tôi chọn kênh dựa trên persona, không chọn theo trend"><span>Tôi chọn kênh dựa trên persona, không chọn theo trend</span></div>
+    <div class="checkbox-row"><input type="checkbox" data-field="s3" data-label="Tôi chỉ chọn 2-3 kênh, không dàn trải quá nhiều"><span>Tôi chỉ chọn 2-3 kênh, không dàn trải quá nhiều</span></div>
+  </section>
+
+  <section class="block">
+    <h2>📝 Nhật ký phản tư</h2>
+    <label data-label="Trước module này bạn định chọn kênh nào? Có thay đổi sau khi phân tích không?">Trước module này bạn định chọn kênh nào? Có thay đổi sau khi phân tích không?</label>
+    <textarea data-field="j1" data-label="Thay đổi lựa chọn kênh" rows="3"></textarea>
+  </section>
+</form>
+
+<div class="actions">
+  <button onclick="saveDraft()">💾 Lưu tạm</button>
+  <button class="secondary" onclick="exportMarkdown()">⬇️ Xuất bài làm (.md)</button>
+  <span id="save-status"></span>
+</div>
+
+<footer class="prompts-note">
+  📋 Bí chỗ nào? Mở file <code>prompts.md</code> trong cùng thư mục này, copy 1 prompt phù hợp và
+  dán vào chatbot (Claude/ChatGPT) kèm bối cảnh của bạn.
+</footer>
+</div>
+
+<script>
+const MODULE_ID = "04";
+const MODULE_TITLE = "Hệ sinh thái nền tảng Việt Nam";
+const STORAGE_KEY = "dmb_module_" + MODULE_ID;
+function collectData(){const data={};document.querySelectorAll('[data-field]').forEach(el=>{if(el.type==='radio'){if(el.checked)data[el.dataset.field]=el.value;}else{data[el.dataset.field]=el.type==='checkbox'?el.checked:el.value;}});return data;}
+function saveDraft(){localStorage.setItem(STORAGE_KEY,JSON.stringify(collectData()));const s=document.getElementById('save-status');s.textContent='Đã lưu lúc '+new Date().toLocaleTimeString('vi-VN');setTimeout(()=>s.textContent='',4000);}
+function loadDraft(){const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return;const data=JSON.parse(raw);document.querySelectorAll('[data-field]').forEach(el=>{const v=data[el.dataset.field];if(v===undefined)return;if(el.type==='radio'){el.checked=(el.value===v);}else if(el.type==='checkbox'){el.checked=v;}else{el.value=v;}});}
+function exportMarkdown(){saveDraft();let md=`# Bài làm — Module ${MODULE_ID}: ${MODULE_TITLE}\n\nNgày xuất: ${new Date().toLocaleString('vi-VN')}\n\n`;const seen=new Set();document.querySelectorAll('[data-field]').forEach(el=>{const field=el.dataset.field;if(seen.has(field))return;if(el.type==='radio'){const checked=document.querySelector(`[data-field="${field}"]:checked`);md+=`## ${el.dataset.label}\n\n${checked?checked.value:'_(chưa chọn)_'}\n\n`;seen.add(field);return;}seen.add(field);const label=el.dataset.label||field;if(el.type==='checkbox'){md+=`- [${el.checked?'x':' '}] ${label}\n`;}else{md+=`## ${label}\n\n${el.value||'_(chưa điền)_'}\n\n`;}});const blob=new Blob([md],{type:'text/markdown'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`bai-lam-module-${MODULE_ID}-${new Date().toISOString().slice(0,10)}.md`;a.click();URL.revokeObjectURL(url);}
+window.addEventListener('DOMContentLoaded', loadDraft);
+</script>
+</body>
+</html>
