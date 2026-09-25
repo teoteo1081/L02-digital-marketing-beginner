@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>DIGITAL MARKETING — Phần 1 — Nền tảng Phễu Marketing</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #24242b; max-width: 1000px; margin: 0 auto; padding: 32px 24px 64px; line-height: 1.68; background: #ffffff; font-size: 16.5px; }
+
+  .cover { background: linear-gradient(135deg, #1e1b4b, #6d28d9 55%, #0891b2); color: white; border-radius: 20px; padding: 44px 40px; margin-bottom: 36px; }
+  .cover .badge { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 999px; padding: 7px 18px; font-size: 12.5px; letter-spacing: 1.2px; font-weight: 700; margin-bottom: 16px; }
+  .cover h1 { margin: 0 0 12px; font-size: 38px; line-height: 1.2; }
+  .cover p.sub { margin: 0; opacity: 0.95; font-size: 16px; }
+  .cover .toc { margin-top: 22px; font-size: 13.8px; opacity: 0.97; line-height: 1.95; }
+  .cover .toc span { display: inline-block; padding: 5px 13px; border-radius: 7px; margin: 3px 5px 0 0; border-left: 4px solid; background: rgba(255,255,255,0.14); }
+
+  .howto { border: 2px solid #c7bdf5; background: #f6f3ff; border-radius: 14px; padding: 20px 26px; margin-bottom: 20px; font-size: 15.5px; }
+  .howto h3 { margin: 0 0 10px; font-size: 17px; color: #4c1d95; }
+  .howto ol { margin: 0; padding-left: 22px; }
+  .howto li { margin-bottom: 6px; }
+
+  .chude { margin-top: 52px; page-break-inside: auto; }
+  h2.section-title { background: var(--bg-soft); border-left: 8px solid var(--accent); padding: 14px 20px; border-radius: 9px; font-size: 23px; margin: 0; color: var(--accent-dark); }
+  .genre-tag { display: inline-block; background: var(--accent); color: white; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; padding: 4px 14px; border-radius: 999px; margin: 12px 0 4px; }
+  h3.tbl-label { font-size: 15.5px; color: var(--accent-dark); margin: 20px 0 8px; padding-left: 2px; }
+
+  table.vocab { width: 100%; border-collapse: collapse; margin: 8px 0 10px; font-size: 14.6px; }
+  table.vocab th { background: var(--accent); color: white; text-align: left; padding: 10px 11px; font-weight: 600; }
+  table.vocab td { padding: 10px 11px; border-bottom: 1px solid var(--bg-soft); vertical-align: top; }
+  table.vocab tr:nth-child(even) td { background: var(--bg-stripe); }
+  table.vocab .word { color: var(--accent-dark); font-weight: 700; }
+  table.vocab .ipa { color: #6b7280; font-size: 13.6px; white-space: nowrap; }
+  table.vocab .vn { color: #1e40af; font-weight: 600; }
+
+  .passage-box { border: 2px dashed var(--accent); border-radius: 13px; padding: 20px 24px; background: var(--bg-soft); margin: 8px 0 18px; font-size: 16.3px; line-height: 1.76; }
+  .passage-box p { margin: 0 0 12px; }
+  .passage-box p:last-child { margin-bottom: 0; }
+  .passage-box b { color: var(--accent-dark); }
+
+  .easy-box { border: 2px solid #f0b429; border-radius: 13px; background: #fffbf0; padding: 18px 24px; margin: 0 0 16px; }
+  .easy-box h4 { margin: 0 0 10px; font-size: 16px; color: #92610a; }
+  .easy-box p { margin: 0 0 10px; font-size: 16px; }
+  .easy-box p:last-child { margin-bottom: 0; }
+  .easy-box b { color: #92610a; }
+
+  .apply-box { border: 2px solid #34a853; border-radius: 13px; background: #f2fbf4; padding: 18px 24px; margin: 0 0 12px; }
+  .apply-box h4 { margin: 0 0 10px; font-size: 16px; color: #1a6b33; }
+  .apply-box ul { margin: 0; padding-left: 22px; font-size: 15.6px; }
+  .apply-box li { margin-bottom: 7px; }
+  .apply-box b { color: #1a6b33; }
+
+  .copyright { margin-top: 48px; font-size: 12.8px; color: #8a8a8a; border-top: 1px solid #eee; padding-top: 16px; }
+
+  .theme-1  { --accent:#6d28d9; --accent-dark:#4c1d95; --bg-soft:#f0eafd; --bg-stripe:#f8f5fe; }
+  .theme-2  { --accent:#0891b2; --accent-dark:#075e78; --bg-soft:#e3f5fa; --bg-stripe:#f1fafc; }
+  .theme-3  { --accent:#c2410c; --accent-dark:#8f2f08; --bg-soft:#fdeadf; --bg-stripe:#fef6f1; }
+  .theme-4  { --accent:#be185d; --accent-dark:#831043; --bg-soft:#fce3ee; --bg-stripe:#fdf2f7; }
+  .theme-5  { --accent:#15803d; --accent-dark:#0f5c2c; --bg-soft:#ddf4e4; --bg-stripe:#eefbf1; }
+  .theme-6  { --accent:#1d4ed8; --accent-dark:#15379b; --bg-soft:#e2eafd; --bg-stripe:#f1f5fe; }
+  .theme-7  { --accent:#a16207; --accent-dark:#713f05; --bg-soft:#faf0d7; --bg-stripe:#fdf8eb; }
+  .theme-8  { --accent:#b91c1c; --accent-dark:#7f1414; --bg-soft:#fbe1e1; --bg-stripe:#fdf1f1; }
+  .theme-9  { --accent:#4338ca; --accent-dark:#302893; --bg-soft:#e5e3fa; --bg-stripe:#f2f1fd; }
+  .theme-10 { --accent:#0f766e; --accent-dark:#0a5049; --bg-soft:#e0f4f2; --bg-stripe:#f0faf9; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <span class="badge">DIGITAL MARKETING MASTERY · PHẦN 1/10 · CHỦ ĐỀ 1–10</span>
+  <h1>🎯 Nền tảng Phễu Marketing<br>(Funnel Fundamentals)</h1>
+  <p class="sub">Bộ tài liệu 100 chủ đề Digital Marketing hiện đại — dành cho người <b>không học chuyên ngành marketing</b> nhưng muốn hiểu đúng và dùng được. Mỗi chủ đề gồm: bảng từ vựng chuyên ngành → nội dung tiếng Anh → hộp "Hiểu đơn giản" bằng tiếng Việt với ví dụ đời thường → gợi ý ứng dụng thực tế.</p>
+  <div class="toc">
+    <span style="border-left-color:#c4b5fd">1 · Phễu Marketing: TOFU, MOFU, BOFU</span>
+    <span style="border-left-color:#67e8f9">2 · Demand Generation vs Demand Capture</span>
+    <span style="border-left-color:#fdba74">3 · Mô hình Flywheel (Bánh đà)</span>
+    <span style="border-left-color:#f9a8d4">4 · Hành trình khách hàng &amp; mô hình AIDA</span>
+    <span style="border-left-color:#86efac">5 · Giai đoạn Nhận biết (Awareness)</span>
+    <span style="border-left-color:#93c5fd">6 · Giai đoạn Cân nhắc (Consideration)</span>
+    <span style="border-left-color:#fde68a">7 · Giai đoạn Quyết định (Decision)</span>
+    <span style="border-left-color:#fca5a5">8 · Sau mua hàng &amp; vòng lặp Ủng hộ</span>
+    <span style="border-left-color:#a5b4fc">9 · Rò rỉ phễu &amp; điểm nghẽn chuyển đổi</span>
+    <span style="border-left-color:#5eead4">10 · Đo lường toàn phễu (Full-Funnel)</span>
+  </div>
+</div>
+
+<div class="howto">
+<h3>📌 Cách dùng tài liệu này hiệu quả nhất</h3>
+<ol>
+<li><b>Đọc bảng từ vựng trước.</b> Bạn không cần thuộc lòng — chỉ cần "quen mặt" các thuật ngữ để khi đọc nội dung không bị khựng lại.</li>
+<li><b>Đọc phần nội dung tiếng Anh.</b> Nếu có chỗ khó, cứ đọc lướt qua — hộp màu vàng bên dưới sẽ giải thích lại toàn bộ bằng tiếng Việt.</li>
+<li><b>Đọc hộp "Hiểu đơn giản" (màu vàng).</b> Đây là phần quan trọng nhất với người ngoài ngành: mỗi khái niệm đều được so sánh với một tình huống đời thường.</li>
+<li><b>Xem hộp "Ứng dụng thực tế" (màu xanh).</b> Đây là những việc bạn có thể làm ngay, kể cả khi bạn chỉ đang bán hàng online nhỏ lẻ hay xây dựng thương hiệu cá nhân.</li>
+</ol>
+</div>
+
+<!-- ============ CHỦ ĐỀ 1 ============ -->
+<div class="chude theme-1">
+<h2 class="section-title">📍 Chủ đề 1 — The Marketing Funnel: TOFU, MOFU, BOFU</h2>
+<span class="genre-tag">FUNNEL FUNDAMENTALS</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">marketing funnel</td><td>Noun phrase</td><td class="ipa">/ˈmɑːrkɪtɪŋ ˈfʌnl/</td><td>A model describing the stages a person passes through from first hearing about a brand to buying.</td><td class="vn">Phễu marketing — mô hình mô tả hành trình từ lúc biết đến thương hiệu tới lúc mua</td></tr>
+<tr><td class="word">top of funnel (TOFU)</td><td>Noun phrase</td><td class="ipa">/tɑːp əv ˈfʌnl/</td><td>The widest stage, where people first become aware a problem or brand exists.</td><td class="vn">Đỉnh phễu — giai đoạn người ta mới biết đến vấn đề/thương hiệu</td></tr>
+<tr><td class="word">middle of funnel (MOFU)</td><td>Noun phrase</td><td class="ipa">/ˈmɪdl əv ˈfʌnl/</td><td>The stage where people compare options and evaluate solutions.</td><td class="vn">Giữa phễu — giai đoạn so sánh, cân nhắc các lựa chọn</td></tr>
+<tr><td class="word">bottom of funnel (BOFU)</td><td>Noun phrase</td><td class="ipa">/ˈbɑːtəm əv ˈfʌnl/</td><td>The narrowest stage, where a person is ready to make a purchase decision.</td><td class="vn">Đáy phễu — giai đoạn sẵn sàng ra quyết định mua</td></tr>
+<tr><td class="word">conversion</td><td>Noun</td><td class="ipa">/kənˈvɜːrʒən/</td><td>The moment a person takes the action you wanted (buy, sign up, book a call).</td><td class="vn">Chuyển đổi — khoảnh khắc khách làm đúng hành động bạn muốn</td></tr>
+<tr><td class="word">drop-off rate</td><td>Noun phrase</td><td class="ipa">/drɑːp ɔːf reɪt/</td><td>The percentage of people who leave without moving to the next stage.</td><td class="vn">Tỷ lệ rơi rụng — % người bỏ đi giữa chừng</td></tr>
+<tr><td class="word">lead</td><td>Noun</td><td class="ipa">/liːd/</td><td>A person who has shown some interest and given you a way to contact them.</td><td class="vn">Khách hàng tiềm năng — người đã tỏ ý quan tâm và để lại thông tin</td></tr>
+<tr><td class="word">qualified lead</td><td>Noun phrase</td><td class="ipa">/ˈkwɑːlɪfaɪd liːd/</td><td>A lead who genuinely fits your target customer and has real buying potential.</td><td class="vn">Khách tiềm năng đủ tiêu chuẩn — thật sự phù hợp và có khả năng mua</td></tr>
+<tr><td class="word">nurture</td><td>Verb</td><td class="ipa">/ˈnɜːrtʃər/</td><td>To build a relationship with a lead over time until they are ready to buy.</td><td class="vn">Nuôi dưỡng — chăm sóc dần cho tới khi khách sẵn sàng mua</td></tr>
+<tr><td class="word">funnel stage</td><td>Noun phrase</td><td class="ipa">/ˈfʌnl steɪdʒ/</td><td>One specific step within the overall buying journey.</td><td class="vn">Giai đoạn phễu — một bước cụ thể trong hành trình mua</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>The <b>marketing funnel</b> is probably the most widely used mental model in the entire industry, and its logic is simple: many people will hear about you, fewer will seriously consider you, and only a small portion will actually buy. Drawn as a shape, that pattern looks like a funnel — wide at the top, narrow at the bottom.</p>
+<p>Marketers usually split this into three zones. At the <b>top of funnel (TOFU)</b>, a person has just realised they have a problem, or has simply encountered your brand for the first time. They are not ready to buy and will resist anything that feels like a hard sell. In the <b>middle of funnel (MOFU)</b>, that same person is now actively comparing solutions — reading reviews, watching comparison videos, asking friends. At the <b>bottom of funnel (BOFU)</b>, they have essentially decided what type of solution they want and are choosing between two or three specific providers.</p>
+<p>The critical insight is that <b>each stage requires a completely different kind of message</b>. Sending a discount code to someone at TOFU is wasted money — they don't even know they need the product yet. Conversely, sending a broad educational article to someone at BOFU is frustrating, because they already understand the problem and just want to know your price and whether you're trustworthy.</p>
+<p>Between every stage there is a <b>drop-off rate</b>. If 10,000 people see your content, perhaps 800 become a <b>lead</b>, 200 become a <b>qualified lead</b>, and 40 buy. Those numbers are not failures — they are normal. The job of a marketer is not to eliminate drop-off, which is impossible, but to steadily reduce it at the specific stage where the biggest, most fixable loss is happening.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy tưởng tượng bạn mở một quán cà phê trên một con phố đông.</b></p>
+<p><b>TOFU (đỉnh phễu)</b> là 10.000 người đi ngang qua con phố mỗi ngày. Họ chưa nghĩ đến việc uống cà phê, thậm chí chưa biết quán bạn tồn tại. Việc của bạn lúc này chỉ đơn giản là <i>khiến họ để ý</i> — một tấm biển đẹp, mùi cà phê thơm bay ra đường, một tấm bảng viết tay dí dỏm. Nếu bạn chạy ra kéo tay họ hét "Mua ngay giảm 50%!", đa số sẽ né bạn.</p>
+<p><b>MOFU (giữa phễu)</b> là 800 người dừng lại, liếc vào menu dán ngoài cửa, ngó xem quán có chỗ ngồi thoải mái không, có ổ điện không, giá bao nhiêu. Họ đang <i>so sánh</i> quán bạn với quán đối diện. Lúc này thứ họ cần là thông tin: menu rõ ràng, ảnh đồ uống thật, vài đánh giá tốt dán ở cửa.</p>
+<p><b>BOFU (đáy phễu)</b> là 200 người đã bước vào trong, đứng trước quầy. Họ <i>chắc chắn sẽ uống cà phê hôm nay</i> — câu hỏi duy nhất còn lại là uống ở đây hay chạy sang quán bên. Đây mới đúng là lúc một lời mời "Ly đầu tiên tặng bạn bánh quy" phát huy tác dụng. Cuối cùng 40 người thật sự trả tiền.</p>
+<p><b>Điểm mấu chốt cần nhớ:</b> cùng một câu nói, đặt đúng chỗ thì hiệu quả, đặt sai chỗ thì phản tác dụng. Sai lầm phổ biến nhất của người mới làm marketing là <i>đem lời chào hàng của đáy phễu đi nói với người ở đỉnh phễu</i> — giống như cầu hôn ngay trong lần gặp đầu tiên.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Kiểm tra nội dung hiện tại của bạn:</b> Lấy 10 bài đăng gần nhất trên Facebook/TikTok/website và phân loại xem chúng thuộc TOFU, MOFU hay BOFU. Đa số người mới sẽ phát hiện 90% nội dung của mình là BOFU ("mua ngay", "inbox giá") — đó là lý do tăng trưởng bị chững.</li>
+<li><b>Tỷ lệ tham khảo an toàn:</b> Nhiều đội marketing chia ngân sách/nội dung theo hướng khoảng <b>60% TOFU – 30% MOFU – 10% BOFU</b>. Con số này không phải công thức cứng, nhưng nó nhắc bạn rằng phần lớn công sức phải dành cho việc <i>được biết đến</i>, chứ không phải chốt đơn.</li>
+<li><b>Tìm chỗ rò rỉ lớn nhất:</b> Đừng cố cải thiện mọi thứ cùng lúc. Hãy ghi ra 4 con số (số người thấy → số người bấm vào → số người nhắn tin → số người mua) và tìm bước nào tụt mạnh nhất. Sửa đúng một chỗ đó thường hiệu quả hơn sửa lan man cả năm.</li>
+<li><b>Câu hỏi tự kiểm mỗi khi viết nội dung:</b> "Người đọc câu này đang ở giai đoạn nào, và họ cần biết điều gì <i>tiếp theo</i>?" — chứ không phải "Làm sao để họ mua ngay?"</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 2 ============ -->
+<div class="chude theme-2">
+<h2 class="section-title">📍 Chủ đề 2 — Demand Generation vs Demand Capture</h2>
+<span class="genre-tag">CHIẾN LƯỢC CỐT LÕI</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">demand generation</td><td>Noun phrase</td><td class="ipa">/dɪˈmænd ˌdʒɛnəˈreɪʃən/</td><td>Marketing that creates new interest in a problem or solution where none existed before.</td><td class="vn">Tạo nhu cầu — làm cho người ta <i>bắt đầu</i> muốn thứ họ chưa từng nghĩ tới</td></tr>
+<tr><td class="word">demand capture</td><td>Noun phrase</td><td class="ipa">/dɪˈmænd ˈkæptʃər/</td><td>Marketing that converts people who are already actively looking for a solution.</td><td class="vn">Thu nhu cầu — bắt lấy những người <i>đang sẵn</i> đi tìm mua</td></tr>
+<tr><td class="word">existing demand</td><td>Noun phrase</td><td class="ipa">/ɪɡˈzɪstɪŋ dɪˈmænd/</td><td>Interest that is already present in the market right now.</td><td class="vn">Nhu cầu sẵn có — nhu cầu đã tồn tại trên thị trường</td></tr>
+<tr><td class="word">latent demand</td><td>Noun phrase</td><td class="ipa">/ˈleɪtənt dɪˈmænd/</td><td>A real need people have but have not yet consciously recognised.</td><td class="vn">Nhu cầu tiềm ẩn — nhu cầu có thật nhưng khách chưa tự nhận ra</td></tr>
+<tr><td class="word">high-intent</td><td>Adjective</td><td class="ipa">/haɪ ɪnˈtɛnt/</td><td>Describing someone showing strong signals of readiness to buy.</td><td class="vn">Ý định cao — dấu hiệu cho thấy sắp mua đến nơi</td></tr>
+<tr><td class="word">low-intent</td><td>Adjective</td><td class="ipa">/loʊ ɪnˈtɛnt/</td><td>Describing someone browsing or learning with no immediate buying plan.</td><td class="vn">Ý định thấp — mới xem cho biết, chưa định mua</td></tr>
+<tr><td class="word">harvest</td><td>Verb</td><td class="ipa">/ˈhɑːrvɪst/</td><td>To collect results from demand that already exists.</td><td class="vn">Thu hoạch — hái quả từ nhu cầu đã có sẵn</td></tr>
+<tr><td class="word">market size ceiling</td><td>Noun phrase</td><td class="ipa">/ˈmɑːrkɪt saɪz ˈsiːlɪŋ/</td><td>The natural limit on how many people are searching for you at any time.</td><td class="vn">Trần thị trường — giới hạn số người đang chủ động tìm bạn</td></tr>
+<tr><td class="word">compounding effect</td><td>Noun phrase</td><td class="ipa">/kəmˈpaʊndɪŋ ɪˈfɛkt/</td><td>A result that grows larger over time because earlier effort keeps paying off.</td><td class="vn">Hiệu ứng cộng dồn — công sức cũ vẫn tiếp tục sinh lợi</td></tr>
+<tr><td class="word">diminishing returns</td><td>Noun phrase</td><td class="ipa">/dɪˈmɪnɪʃɪŋ rɪˈtɜːrnz/</td><td>The point where extra spending produces progressively smaller gains.</td><td class="vn">Lợi ích giảm dần — càng chi thêm càng thu về ít hơn</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>One of the most useful distinctions in modern marketing is the difference between <b>demand generation</b> and <b>demand capture</b>. They sound similar but they solve opposite problems, and confusing them is a common and expensive mistake.</p>
+<p><b>Demand capture</b> is about <b>harvesting</b> interest that already exists. If someone types "best noise-cancelling headphones under $200" into a search engine, that person is <b>high-intent</b>: they have already decided they want the product and are simply choosing a brand. Search ads, comparison pages, and review-site listings are all capture tactics. Capture is attractive because it is easy to measure — you can trace the click directly to the sale.</p>
+<p>However, capture has a hard <b>market size ceiling</b>. On any given day only a limited number of people are actively searching, and once you are already showing up for every relevant search, spending more money produces <b>diminishing returns</b>. You cannot harvest more fruit than the tree currently holds.</p>
+<p><b>Demand generation</b> solves that ceiling problem by growing the tree itself. It targets <b>latent demand</b> — people who have a genuine underlying need but have not yet consciously framed it as something to search for. A video explaining <i>why</i> background noise damages concentration creates awareness that a problem exists; some viewers who never intended to buy headphones will later realise they want a pair.</p>
+<p>The trade-off is measurement. Generation produces a <b>compounding effect</b> — content and brand awareness keep working for years — but the link between a video watched in March and a purchase made in September is genuinely hard to prove. Mature marketing teams therefore run both: generation to expand the future market, capture to convert the present one.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy tưởng tượng bạn bán ô (dù) che mưa.</b></p>
+<p><b>Demand capture (thu nhu cầu)</b> = bạn đứng bán ô ngay cửa ga tàu <i>đúng lúc trời đang mưa</i>. Ai bước ra cũng ướt, ai cũng cần ô ngay lập tức. Bạn không cần thuyết phục gì cả — chỉ cần có mặt đúng chỗ, giá hợp lý, là bán được. Rất dễ đo: bao nhiêu người đi qua, bao nhiêu người mua, lời bao nhiêu.</p>
+<p><b>Nhưng vấn đề là gì?</b> Mỗi ngày chỉ có chừng đó người ra khỏi ga, và chỉ vài ngày trong tháng trời mới mưa. Dù bạn thuê thêm 10 nhân viên đứng bán cũng không thể bán nhiều hơn số người đang ướt. Đó chính là <b>"trần thị trường"</b>.</p>
+<p><b>Demand generation (tạo nhu cầu)</b> = bạn làm một series video ngắn kể chuyện "Chiếc áo khoác đắt tiền của tôi hỏng vì một cơn mưa bất chợt", hoặc dạy mọi người cách đọc dự báo thời tiết. Xem xong, có người chưa từng nghĩ đến việc mang ô trong cặp bỗng nghĩ: <i>"Ừ nhỉ, mình nên thủ sẵn một cái."</i> Bạn vừa <b>tạo ra</b> một khách hàng mà trước đó thị trường không có.</p>
+<p><b>Cái giá phải trả:</b> người đó có thể 3 tháng sau mới mua, và khi mua họ sẽ không nói "tôi mua vì xem video của bạn hồi tháng 5". Nên bạn <i>rất khó chứng minh</i> video đó có tác dụng — dù nó thực sự có.</p>
+<p><b>Kết luận thực tế:</b> chỉ làm capture thì doanh thu ổn định nhưng mãi không lớn được. Chỉ làm generation thì tốn tiền mà không thấy đơn ngay. Người làm giỏi luôn làm <i>cả hai</i>: generation để trồng cây cho năm sau, capture để hái quả cho tháng này.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Phân loại kênh của bạn:</b> Quảng cáo tìm kiếm (Google Search), SEO từ khóa "mua/giá/ở đâu", sàn thương mại điện tử → đều là <b>capture</b>. Video ngắn kể chuyện, podcast, bài chia sẻ kiến thức, xây cộng đồng → đều là <b>generation</b>.</li>
+<li><b>Dấu hiệu bạn đang chạm trần capture:</b> Chi phí quảng cáo mỗi đơn hàng cứ tăng dần đều dù bạn không làm gì sai, và tăng ngân sách gấp đôi nhưng đơn chỉ tăng 20%. Đó là lúc bắt buộc phải đầu tư vào generation.</li>
+<li><b>Bắt đầu generation với chi phí gần bằng 0:</b> Mỗi tuần trả lời công khai <i>một</i> câu hỏi mà khách hay hỏi bạn nhất — bằng video 60 giây hoặc một bài viết ngắn. Sau 6 tháng bạn có 26 nội dung tự chạy, tạo ra hiệu ứng cộng dồn.</li>
+<li><b>Đừng đo generation bằng thước đo của capture.</b> Nếu bắt một video kiến thức phải ra đơn trong 7 ngày rồi kết luận "không hiệu quả", bạn sẽ cắt đúng thứ đang xây tương lai cho mình.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 3 ============ -->
+<div class="chude theme-3">
+<h2 class="section-title">📍 Chủ đề 3 — The Flywheel Model (Mô hình Bánh đà)</h2>
+<span class="genre-tag">MÔ HÌNH HIỆN ĐẠI</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">flywheel</td><td>Noun</td><td class="ipa">/ˈflaɪwiːl/</td><td>A growth model where satisfied customers feed new growth, forming a self-reinforcing loop.</td><td class="vn">Bánh đà — mô hình mà khách hài lòng lại kéo về khách mới, quay vòng liên tục</td></tr>
+<tr><td class="word">self-reinforcing loop</td><td>Noun phrase</td><td class="ipa">/sɛlf ˌriːɪnˈfɔːrsɪŋ luːp/</td><td>A cycle in which each result makes the next result easier.</td><td class="vn">Vòng lặp tự củng cố — kết quả này làm kết quả sau dễ hơn</td></tr>
+<tr><td class="word">momentum</td><td>Noun</td><td class="ipa">/moʊˈmɛntəm/</td><td>Accumulated force that keeps growth moving with less new effort.</td><td class="vn">Đà — lực tích lũy giúp mọi thứ tự chạy tiếp</td></tr>
+<tr><td class="word">friction</td><td>Noun</td><td class="ipa">/ˈfrɪkʃən/</td><td>Anything that slows a customer down or makes an action harder.</td><td class="vn">Ma sát — bất cứ thứ gì làm khách chậm lại hoặc thấy phiền</td></tr>
+<tr><td class="word">advocacy</td><td>Noun</td><td class="ipa">/ˈædvəkəsi/</td><td>Customers actively recommending you to others without being paid.</td><td class="vn">Sự ủng hộ — khách tự nguyện giới thiệu bạn cho người khác</td></tr>
+<tr><td class="word">word of mouth</td><td>Noun phrase</td><td class="ipa">/wɜːrd əv maʊθ/</td><td>Informal recommendations passed between people.</td><td class="vn">Truyền miệng</td></tr>
+<tr><td class="word">customer delight</td><td>Noun phrase</td><td class="ipa">/ˈkʌstəmər dɪˈlaɪt/</td><td>Exceeding expectations so much that the customer wants to tell someone.</td><td class="vn">Sự "sướng" của khách — vượt kỳ vọng đến mức khách muốn kể cho người khác</td></tr>
+<tr><td class="word">linear model</td><td>Noun phrase</td><td class="ipa">/ˈlɪniər ˈmɑːdl/</td><td>A model with a fixed start and end point, like the classic funnel.</td><td class="vn">Mô hình tuyến tính — có điểm đầu, điểm cuối rõ ràng</td></tr>
+<tr><td class="word">retention</td><td>Noun</td><td class="ipa">/rɪˈtɛnʃən/</td><td>Keeping existing customers active over time.</td><td class="vn">Giữ chân khách — giữ khách cũ tiếp tục dùng</td></tr>
+<tr><td class="word">referral</td><td>Noun</td><td class="ipa">/rɪˈfɜːrəl/</td><td>A new customer introduced by an existing one.</td><td class="vn">Khách được giới thiệu</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>The traditional funnel has one significant weakness: it is a <b>linear model</b>. It treats the sale as the finish line, which means the customer disappears from the diagram at the exact moment they become most valuable. The <b>flywheel</b> model, popularised by HubSpot and originally borrowed from Jim Collins's business writing, was designed to fix that blind spot.</p>
+<p>A flywheel is a heavy wheel that is difficult to start turning but, once spinning, keeps going with relatively little extra push. Applied to marketing, the idea is that your existing customers are not the end of the process — they are the engine of it. A delighted customer leaves a review, recommends you to a colleague, posts about you online, and returns to buy again. Each of those actions brings in new customers with far less effort than paid advertising, creating a <b>self-reinforcing loop</b>.</p>
+<p>Two forces determine how fast the wheel spins. The first is <b>momentum</b>, which you increase through <b>customer delight</b>: exceeding expectations enough that people genuinely want to talk about you. The second is <b>friction</b>, which slows the wheel: a confusing checkout page, slow customer support, a return policy written in hostile legal language.</p>
+<p>The practical implication is a shift in priorities. In funnel thinking, a fixed marketing budget goes mostly toward acquiring strangers. In flywheel thinking, some of that budget is deliberately moved toward <b>retention</b> and <b>advocacy</b>, because a customer who recommends you generates growth that costs nothing and carries far more trust than any advertisement. <b>Word of mouth</b> stops being a lucky accident and becomes a system you design on purpose.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy nghĩ về một tiệm cắt tóc trong khu bạn ở.</b></p>
+<p><b>Kiểu tư duy phễu (cũ):</b> Chủ tiệm nghĩ "Tôi cần nhiều khách mới". Mỗi tháng ông ấy in tờ rơi, chạy quảng cáo, treo băng rôn giảm giá. Khách vào cắt xong, trả tiền, đi ra — <i>xong, hết chuyện</i>. Tháng sau lại tốn tiền in tờ rơi mới. Cứ ngừng chi tiền là ngừng có khách.</p>
+<p><b>Kiểu tư duy bánh đà (mới):</b> Chủ tiệm nghĩ "Tôi cần khách <i>kể về tôi</i>". Ông ấy nhớ tên khách, nhớ kiểu tóc lần trước, cắt xong nhắn tin nhắc "3 tuần nữa anh ghé lại là vừa đẹp". Khách thấy được quan tâm thật sự nên kể cho đồng nghiệp, dẫn con trai tới, đăng ảnh lên Facebook. <b>Mỗi khách cũ tự động kéo về 1–2 khách mới mà chủ tiệm không tốn thêm đồng nào.</b></p>
+<p><b>Vì sao gọi là "bánh đà"?</b> Bánh đà là bánh xe rất nặng: lúc đầu đẩy cực mệt, quay được một vòng đã toát mồ hôi. Nhưng khi nó đã quay đủ nhanh, chỉ cần đẩy nhẹ là nó tự quay tiếp rất lâu. Tiệm tóc kia trong 6 tháng đầu có thể rất vất vả, nhưng đến năm thứ hai thì khách tự đến, không cần tờ rơi nữa.</p>
+<p><b>Còn "ma sát" (friction) là gì?</b> Là mọi thứ khiến bánh đà quay chậm lại: gọi điện không ai bắt máy, đợi 40 phút không ai xin lỗi, muốn đổi lịch phải nhắn 3 lần. Mỗi lần như vậy là bạn <i>bóp phanh</i> chính bánh đà của mình. Trong marketing hiện đại, <b>gỡ bỏ ma sát thường rẻ và hiệu quả hơn là chi thêm tiền quảng cáo</b>.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Liệt kê 5 điểm ma sát trong quy trình của bạn:</b> Khách phải điền bao nhiêu ô mới mua được? Phải chờ bao lâu mới có người trả lời? Muốn hoàn trả thì khó cỡ nào? Gỡ được 2 trong 5 điểm này thường tạo hiệu quả rõ hơn một chiến dịch quảng cáo mới.</li>
+<li><b>Thiết kế "khoảnh khắc khiến khách muốn kể":</b> Không cần tốn kém — một tin nhắn cá nhân hóa, một lời cảm ơn viết tay, một mẹo dùng sản phẩm gửi sau 3 ngày. Điều quan trọng là nó phải <i>bất ngờ</i> hơn mức khách kỳ vọng.</li>
+<li><b>Chủ động xin giới thiệu đúng lúc:</b> Thời điểm tốt nhất để xin khách giới thiệu bạn bè là ngay sau khi họ vừa khen bạn, không phải lúc gửi hóa đơn. Hãy để ý và hỏi ngay khoảnh khắc đó.</li>
+<li><b>Chuyển 10–20% ngân sách marketing sang chăm sóc khách cũ.</b> Với hầu hết doanh nghiệp nhỏ, đây là thay đổi có tỷ suất sinh lời cao nhất mà lại ít rủi ro nhất.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 4 ============ -->
+<div class="chude theme-4">
+<h2 class="section-title">📍 Chủ đề 4 — Customer Journey &amp; the AIDA Model</h2>
+<span class="genre-tag">HÀNH TRÌNH KHÁCH HÀNG</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">customer journey</td><td>Noun phrase</td><td class="ipa">/ˈkʌstəmər ˈdʒɜːrni/</td><td>The complete path a person takes from first contact to loyal customer.</td><td class="vn">Hành trình khách hàng — toàn bộ chặng đường từ lần đầu biết tới lúc trung thành</td></tr>
+<tr><td class="word">AIDA model</td><td>Noun phrase</td><td class="ipa">/ɑːˈiːdə ˈmɑːdl/</td><td>A classic framework: Attention, Interest, Desire, Action.</td><td class="vn">Mô hình AIDA: Chú ý → Quan tâm → Khao khát → Hành động</td></tr>
+<tr><td class="word">touchpoint</td><td>Noun</td><td class="ipa">/ˈtʌtʃpɔɪnt/</td><td>Any single moment of contact between a person and your brand.</td><td class="vn">Điểm chạm — mỗi lần khách tiếp xúc với thương hiệu</td></tr>
+<tr><td class="word">non-linear</td><td>Adjective</td><td class="ipa">/nɑːn ˈlɪniər/</td><td>Not following a fixed order; jumping back and forth between stages.</td><td class="vn">Phi tuyến tính — nhảy tới nhảy lui, không theo thứ tự</td></tr>
+<tr><td class="word">messy middle</td><td>Noun phrase</td><td class="ipa">/ˈmɛsi ˈmɪdl/</td><td>The chaotic research-and-compare phase before a purchase decision.</td><td class="vn">"Khúc giữa lộn xộn" — giai đoạn tìm hiểu, so sánh loạn xạ trước khi mua</td></tr>
+<tr><td class="word">trigger event</td><td>Noun phrase</td><td class="ipa">/ˈtrɪɡər ɪˈvɛnt/</td><td>A specific occurrence that pushes someone to start looking for a solution.</td><td class="vn">Sự kiện kích hoạt — biến cố khiến khách bắt đầu đi tìm giải pháp</td></tr>
+<tr><td class="word">consideration set</td><td>Noun phrase</td><td class="ipa">/kənˌsɪdəˈreɪʃən sɛt/</td><td>The short list of brands a buyer is genuinely choosing between.</td><td class="vn">Tập cân nhắc — vài thương hiệu lọt vào "danh sách rút gọn" trong đầu khách</td></tr>
+<tr><td class="word">desire</td><td>Noun</td><td class="ipa">/dɪˈzaɪər/</td><td>Emotional wanting, beyond simple rational interest.</td><td class="vn">Khao khát — muốn về mặt cảm xúc, không chỉ thấy hợp lý</td></tr>
+<tr><td class="word">call to action (CTA)</td><td>Noun phrase</td><td class="ipa">/kɔːl tuː ˈækʃən/</td><td>A clear instruction telling the audience exactly what to do next.</td><td class="vn">Lời kêu gọi hành động — chỉ rõ khách cần làm gì tiếp theo</td></tr>
+<tr><td class="word">exposure</td><td>Noun</td><td class="ipa">/ɪkˈspoʊʒər/</td><td>The number of times a person encounters your brand.</td><td class="vn">Sự tiếp xúc — số lần khách nhìn thấy thương hiệu bạn</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>The <b>AIDA model</b> — Attention, Interest, Desire, Action — was first described by advertising pioneer E. St. Elmo Lewis around 1898, and it has survived for more than a century because it captures a genuine psychological sequence. First you must be noticed at all (<b>Attention</b>). Then the person must find the topic personally relevant (<b>Interest</b>). Then rational relevance must turn into emotional wanting (<b>Desire</b>). Only then does a <b>call to action</b> have any chance of working.</p>
+<p>What has changed dramatically is the assumption that people move through these steps in a tidy straight line. Modern buying behaviour is strongly <b>non-linear</b>. Google's research team described the reality as the "<b>messy middle</b>": a chaotic loop where a person searches, reads a review, forgets about it for two weeks, sees a video, asks a friend, compares prices, and circles back — sometimes dozens of times before deciding.</p>
+<p>Two concepts are especially useful here. A <b>trigger event</b> is the specific thing that starts the journey — a laptop dying, a lease ending, a doctor's warning. Marketers who understand the common triggers in their category can be present at exactly the right moment. The <b>consideration set</b> is the small mental short list a buyer forms, usually only two to four brands. Most purchase decisions are effectively made when this list is formed, not at the final click — which is precisely why brand awareness built long before the purchase matters so much.</p>
+<p>Rather than assuming a clean path, effective marketers map their real <b>touchpoints</b> and ensure that whenever a person re-enters the loop, whatever they encounter is consistent, reassuring, and easy to act on.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy nhớ lại lần gần nhất bạn mua một chiếc điện thoại mới.</b></p>
+<p>Chuyện thường bắt đầu bằng một <b>sự kiện kích hoạt (trigger event)</b>: điện thoại cũ sập nguồn giữa cuộc gọi quan trọng, hoặc pin tụt còn 2 tiếng là hết. Trước hôm đó, bạn hoàn toàn không quan tâm đến điện thoại mới. Sau hôm đó, đột nhiên bạn <i>để ý</i> đến mọi quảng cáo điện thoại.</p>
+<p>Rồi bạn bước vào cái mà Google gọi là <b>"khúc giữa lộn xộn"</b>. Bạn tìm "điện thoại tầm 10 triệu", xem review, hỏi đứa bạn rành công nghệ, quên bẵng đi một tuần vì bận, rồi lại xem tiếp, đọc bình luận trên Shopee, so giá 3 nơi... Bạn <i>không hề</i> đi theo đường thẳng đẹp đẽ như trong sách. Bạn nhảy lung tung.</p>
+<p><b>Điều quan trọng nhất mà ít người để ý:</b> trong đầu bạn nhanh chóng hình thành một <b>"danh sách rút gọn" (consideration set)</b> — thường chỉ 2 đến 4 cái tên. Và câu hỏi then chốt là: <i>vì sao đúng những cái tên đó lọt vào danh sách?</i> Câu trả lời hầu như luôn là: vì bạn đã nghe/thấy chúng nhiều lần <b>từ rất lâu trước khi</b> bạn cần mua.</p>
+<p><b>Đây chính là bài học đắt giá:</b> trận đấu thường đã phân thắng bại <i>trước khi</i> khách bắt đầu tìm mua. Nếu thương hiệu của bạn chỉ xuất hiện đúng lúc khách đang tìm, bạn phải cạnh tranh bằng giá. Nếu bạn đã ở trong đầu họ từ 6 tháng trước, bạn được chọn gần như mặc định.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Liệt kê 3 "sự kiện kích hoạt" của ngành bạn.</b> Ví dụ: dịch vụ kế toán → "vừa mở công ty", "sắp đến hạn quyết toán thuế", "bị phạt lần đầu". Hãy tạo nội dung nhắm thẳng vào 3 khoảnh khắc đó.</li>
+<li><b>Kiểm tra tính nhất quán ở mọi điểm chạm:</b> Mở website, fanpage, gian hàng Shopee, hồ sơ LinkedIn của bạn cạnh nhau. Chúng có giống như cùng một thương hiệu không, hay như 4 công ty khác nhau? Sự không nhất quán khiến khách phải "học lại từ đầu" mỗi lần quay lại.</li>
+<li><b>Một CTA rõ ràng cho mỗi nội dung.</b> Đừng bắt khách đoán. "Nhắn tin để nhận bảng giá" tốt hơn "Liên hệ chúng tôi để biết thêm chi tiết" — vì nó nói rõ khách sẽ nhận được gì.</li>
+<li><b>Chấp nhận rằng khách sẽ quay lại nhiều lần trước khi mua.</b> Đừng nản khi ai đó xem 5 lần chưa mua — đó là hành vi hoàn toàn bình thường, không phải dấu hiệu thất bại.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 5 ============ -->
+<div class="chude theme-5">
+<h2 class="section-title">📍 Chủ đề 5 — Awareness Stage: Getting Noticed</h2>
+<span class="genre-tag">GIAI ĐOẠN NHẬN BIẾT</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">brand awareness</td><td>Noun phrase</td><td class="ipa">/brænd əˈwɛrnəs/</td><td>How familiar your target audience is with your brand.</td><td class="vn">Nhận biết thương hiệu — mức độ khách quen mặt, nhớ tên bạn</td></tr>
+<tr><td class="word">reach</td><td>Noun</td><td class="ipa">/riːtʃ/</td><td>The number of unique people who saw your content.</td><td class="vn">Độ phủ — số người khác nhau đã nhìn thấy nội dung</td></tr>
+<tr><td class="word">impression</td><td>Noun</td><td class="ipa">/ɪmˈprɛʃən/</td><td>One instance of content being displayed (the same person can generate many).</td><td class="vn">Lượt hiển thị — mỗi lần nội dung được hiện ra (1 người có thể tạo nhiều lượt)</td></tr>
+<tr><td class="word">frequency</td><td>Noun</td><td class="ipa">/ˈfriːkwənsi/</td><td>How many times, on average, one person sees your message.</td><td class="vn">Tần suất — trung bình một người thấy bạn bao nhiêu lần</td></tr>
+<tr><td class="word">mental availability</td><td>Noun phrase</td><td class="ipa">/ˈmɛntl əˌveɪləˈbɪləti/</td><td>How easily your brand comes to mind in a buying situation.</td><td class="vn">Độ sẵn có trong tâm trí — khách nghĩ đến bạn dễ tới mức nào khi cần mua</td></tr>
+<tr><td class="word">category entry point</td><td>Noun phrase</td><td class="ipa">/ˈkætəɡɔːri ˈɛntri pɔɪnt/</td><td>A specific situation that makes someone think of a product category.</td><td class="vn">Điểm nhập ngành — tình huống khiến khách nghĩ đến loại sản phẩm đó</td></tr>
+<tr><td class="word">distinctive brand asset</td><td>Noun phrase</td><td class="ipa">/dɪˈstɪŋktɪv brænd ˈæsɛt/</td><td>A recognisable element (colour, sound, logo) that identifies you instantly.</td><td class="vn">Tài sản thương hiệu đặc trưng — màu, âm thanh, logo nhận ra ngay</td></tr>
+<tr><td class="word">top-of-mind</td><td>Adjective</td><td class="ipa">/tɑːp əv maɪnd/</td><td>Being the first brand a person thinks of in a category.</td><td class="vn">Đứng đầu tâm trí — cái tên bật ra đầu tiên khi khách nghĩ đến ngành đó</td></tr>
+<tr><td class="word">broad targeting</td><td>Noun phrase</td><td class="ipa">/brɔːd ˈtɑːrɡɪtɪŋ/</td><td>Reaching a wide audience rather than a narrowly defined one.</td><td class="vn">Nhắm rộng — tiếp cận nhiều người thay vì nhóm quá hẹp</td></tr>
+<tr><td class="word">salience</td><td>Noun</td><td class="ipa">/ˈseɪliəns/</td><td>The quality of standing out and being noticed.</td><td class="vn">Độ nổi bật — mức dễ được để ý giữa đám đông</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>The awareness stage is where most marketing budgets are either well spent or quietly wasted, because the goal here is easy to state but hard to accept: <b>you are not trying to sell anything yet</b>. You are trying to become familiar.</p>
+<p>Research from the Ehrenberg-Bass Institute, particularly the work of Byron Sharp, reframed this stage around a concept called <b>mental availability</b> — how easily and how often your brand comes to mind when a buying situation arises. Crucially, this is not the same as people liking you more. It is about being <i>retrievable from memory</i> at the right moment.</p>
+<p>Mental availability is built by linking your brand to many <b>category entry points</b>: the specific real-life situations that make someone think of your product type. A coffee brand might want to be linked to "need to wake up", "hosting a friend", "long drive", and "cold morning". Each additional situation you own is another door through which a customer can arrive.</p>
+<p>Two practical tools support this. <b>Distinctive brand assets</b> — a consistent colour, a sound, a character, a phrase — allow instant recognition even when someone is barely paying attention. And <b>frequency</b> matters: a single exposure is almost always forgotten, while repeated, consistent exposure builds familiarity, which the brain then quietly converts into trust.</p>
+<p>This stage also justifies <b>broad targeting</b>. Hyper-narrow targeting can be efficient for capture, but for awareness it is often counterproductive, because tomorrow's buyers frequently do not resemble today's.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy thử một thí nghiệm nhỏ: bạn đang khát và muốn uống nước ngọt có ga. Cái tên nào bật ra trong đầu bạn đầu tiên?</b></p>
+<p>Gần như chắc chắn bạn nghĩ ngay đến một trong hai cái tên quen thuộc. Đó không phải vì bạn <i>thích</i> họ hơn — mà vì họ đã xuất hiện trước mắt bạn hàng nghìn lần, đến mức tên họ trở thành phản xạ. Đó chính là <b>"độ sẵn có trong tâm trí" (mental availability)</b>.</p>
+<p><b>Còn "điểm nhập ngành" (category entry point) là gì?</b> Hãy nghĩ về các tình huống khiến bạn nghĩ đến việc ăn phở: trời lạnh, đang ốm, sáng sớm đói bụng, tiếp khách nước ngoài. Mỗi tình huống là một <i>cánh cửa</i>. Nếu quán phở của bạn chỉ được nhớ đến trong tình huống "sáng sớm", bạn mất hết ba cánh cửa còn lại.</p>
+<p><b>Vì sao phải nhắc đi nhắc lại?</b> Hãy nhớ lại: bạn có nhớ tên quán ăn mình đi ngang <i>một lần</i> tháng trước không? Chắc là không. Nhưng cái quán bạn đi ngang mỗi ngày trên đường đi làm thì bạn nhớ tên, dù chưa từng vào ăn. Não người hoạt động đúng như vậy — <b>quen mặt trước, tin tưởng sau</b>.</p>
+<p><b>Sai lầm phổ biến nhất ở giai đoạn này:</b> chủ shop nhỏ đăng bài, thấy "chỉ có 3 like, chẳng ai mua" rồi bỏ cuộc sau 2 tuần. Nhưng giai đoạn nhận biết vốn dĩ <i>không tạo ra đơn hàng ngay</i>. Nó giống như tưới cây — bạn không thể tưới hôm nay rồi mai đòi hái quả.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Viết ra 5 "điểm nhập ngành" của bạn.</b> Khách nghĩ đến sản phẩm của bạn trong <i>những tình huống cụ thể nào</i>? Sau đó tạo ít nhất một nội dung cho mỗi tình huống. Đây là cách mở rộng thị trường mà không cần thêm sản phẩm mới.</li>
+<li><b>Chọn và giữ nguyên tài sản nhận diện:</b> một màu chủ đạo, một kiểu chữ, một câu nói lặp lại, một gương mặt xuất hiện đều. Đừng đổi mỗi tháng — sự nhàm chán của bạn chính là lúc khách <i>vừa mới bắt đầu</i> nhận ra bạn.</li>
+<li><b>Đừng đánh giá nội dung nhận biết bằng số đơn hàng.</b> Hãy đo bằng: lượng người tiếp cận mới, số lượt tìm kiếm tên thương hiệu, số người nhắn tin nói "em thấy anh/chị trên TikTok".</li>
+<li><b>Kiên trì tối thiểu 90 ngày</b> trước khi kết luận một kênh nhận biết có hiệu quả hay không. Dưới mốc đó, dữ liệu gần như vô nghĩa.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 6 ============ -->
+<div class="chude theme-6">
+<h2 class="section-title">📍 Chủ đề 6 — Consideration Stage: Becoming the Obvious Choice</h2>
+<span class="genre-tag">GIAI ĐOẠN CÂN NHẮC</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">consideration stage</td><td>Noun phrase</td><td class="ipa">/kənˌsɪdəˈreɪʃən steɪdʒ/</td><td>The phase where a buyer actively evaluates competing options.</td><td class="vn">Giai đoạn cân nhắc — khách đang tích cực so sánh các lựa chọn</td></tr>
+<tr><td class="word">objection</td><td>Noun</td><td class="ipa">/əbˈdʒɛkʃən/</td><td>A doubt or concern that stops someone from moving forward.</td><td class="vn">Rào cản/băn khoăn khiến khách chần chừ</td></tr>
+<tr><td class="word">social proof</td><td>Noun phrase</td><td class="ipa">/ˈsoʊʃəl pruːf/</td><td>Evidence that other people have chosen you and were satisfied.</td><td class="vn">Bằng chứng xã hội — chứng cứ người khác đã chọn bạn và hài lòng</td></tr>
+<tr><td class="word">testimonial</td><td>Noun</td><td class="ipa">/ˌtɛstɪˈmoʊniəl/</td><td>A written or recorded statement from a satisfied customer.</td><td class="vn">Lời chứng thực từ khách hàng</td></tr>
+<tr><td class="word">case study</td><td>Noun phrase</td><td class="ipa">/keɪs ˈstʌdi/</td><td>A detailed story showing how a real customer achieved a result.</td><td class="vn">Nghiên cứu tình huống — câu chuyện chi tiết về kết quả khách đạt được</td></tr>
+<tr><td class="word">comparison content</td><td>Noun phrase</td><td class="ipa">/kəmˈpærɪsən ˈkɑːntɛnt/</td><td>Content directly comparing you with alternatives.</td><td class="vn">Nội dung so sánh — so bạn với các lựa chọn khác</td></tr>
+<tr><td class="word">risk reversal</td><td>Noun phrase</td><td class="ipa">/rɪsk rɪˈvɜːrsl/</td><td>Shifting purchase risk from the buyer to the seller (e.g. guarantees).</td><td class="vn">Đảo ngược rủi ro — bạn gánh rủi ro thay khách (bảo hành, hoàn tiền)</td></tr>
+<tr><td class="word">perceived risk</td><td>Noun phrase</td><td class="ipa">/pərˈsiːvd rɪsk/</td><td>How dangerous or costly a wrong decision feels to the buyer.</td><td class="vn">Rủi ro cảm nhận — khách <i>cảm thấy</i> chọn sai thì thiệt cỡ nào</td></tr>
+<tr><td class="word">credibility signal</td><td>Noun phrase</td><td class="ipa">/ˌkrɛdəˈbɪləti ˈsɪɡnəl/</td><td>Any element that quickly proves you are competent and trustworthy.</td><td class="vn">Tín hiệu uy tín — thứ chứng minh nhanh rằng bạn đáng tin</td></tr>
+<tr><td class="word">decision criteria</td><td>Noun phrase</td><td class="ipa">/dɪˈsɪʒən kraɪˈtɪriə/</td><td>The specific factors a buyer uses to judge options.</td><td class="vn">Tiêu chí quyết định — những yếu tố khách dùng để chấm điểm</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>In the <b>consideration stage</b>, the buyer has accepted that they need a solution. Their question is no longer "do I have a problem?" but "which option should I trust with my money?" This shift changes everything about the content that works.</p>
+<p>The dominant emotion at this stage is not excitement — it is <b>perceived risk</b>. Buyers are far more afraid of making an embarrassing mistake than they are excited about a marginal gain. This means the highest-value marketing activity here is systematically removing doubt.</p>
+<p>The most effective tool is <b>social proof</b>, because human beings use the behaviour of others as a shortcut when they lack expertise. A <b>testimonial</b> works, but a <b>case study</b> works far better, because it is specific: it names a real situation, a real obstacle, and a measurable outcome. Vague praise ("great service!") is easy to fake and the brain discounts it accordingly.</p>
+<p>Many brands avoid <b>comparison content</b> out of fear of mentioning competitors. This is usually a mistake. Your buyer <i>is already</i> comparing you — the only question is whether they do it using your framing or someone else's. Publishing an honest comparison, including where a competitor is genuinely a better fit, tends to increase trust rather than lose sales.</p>
+<p>Finally, <b>risk reversal</b> directly attacks the fear itself. A money-back guarantee, a free trial, or a pilot project transfers risk from buyer to seller. When a business is confident enough to absorb that risk, buyers read it as a <b>credibility signal</b> in its own right.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy nhớ lại cảm giác khi bạn chọn một nha sĩ để nhổ răng khôn.</b></p>
+<p>Bạn <i>biết chắc</i> mình cần nhổ — không còn phải thuyết phục nữa. Nhưng bạn vẫn chần chừ cả tuần. Vì sao? Vì bạn sợ chọn nhầm chỗ: sợ đau, sợ bị "vẽ" thêm dịch vụ, sợ bác sĩ tay nghề kém. Đó chính là <b>"rủi ro cảm nhận" (perceived risk)</b> — và nó lớn hơn nhiều so với ham muốn tiết kiệm vài trăm nghìn.</p>
+<p><b>Thứ gì khiến bạn quyết định?</b> Thường không phải quảng cáo. Mà là: một người bạn từng nhổ ở đó kể lại chi tiết ("mình nhổ 2 cái, tê hết, về không sưng mấy"), vài chục đánh giá thật có kèm ảnh, bằng cấp treo trên tường, và câu nói của phòng khám: <i>"Nếu sau 3 ngày còn đau bất thường, anh/chị quay lại khám miễn phí."</i></p>
+<p><b>Hãy để ý ba thứ vừa xảy ra:</b><br>
+① Lời kể chi tiết của người bạn = <b>case study</b> (mạnh hơn nhiều so với câu "phòng khám tốt lắm").<br>
+② Đánh giá + bằng cấp = <b>social proof</b> và <b>tín hiệu uy tín</b>.<br>
+③ Lời hứa khám lại miễn phí = <b>risk reversal</b> — phòng khám <i>gánh rủi ro thay bạn</i>.</p>
+<p><b>Còn chuyện so sánh với đối thủ thì sao?</b> Nhiều người sợ nhắc tên đối thủ. Nhưng thực tế là khách <i>đang so sánh bạn với họ ngay lúc này rồi</i>, dù bạn có nói hay không. Nếu bạn chủ động làm bảng so sánh trung thực — kể cả thừa nhận "nếu bạn cần X thì bên kia hợp hơn" — khách sẽ tin bạn <i>hơn</i>, chứ không mất khách. Vì sự trung thực đó chứng minh bạn không cố lừa họ.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Viết ra 5 lý do khách <i>không</i> mua của bạn.</b> Đắt? Sợ không hợp? Không tin giao đúng hẹn? Mỗi lý do cần một nội dung trả lời thẳng, không né tránh. Đây gần như luôn là việc có hiệu quả cao nhất mà các doanh nghiệp nhỏ bỏ quên.</li>
+<li><b>Nâng cấp lời chứng thực thành case study:</b> Thay vì "Chị Lan: sản phẩm tốt", hãy viết "Chị Lan, chủ shop quần áo 4 năm, tồn kho 200 món. Sau 6 tuần áp dụng, bán hết 170 món và không phải giảm giá sâu." Cụ thể luôn thắng chung chung.</li>
+<li><b>Thêm một cam kết đảo ngược rủi ro</b> phù hợp với ngành: đổi trả trong 7 ngày, buổi tư vấn đầu miễn phí, hoàn tiền nếu không đúng mô tả. Hãy tính toán mức bạn chịu được — thường tỷ lệ người thật sự đòi hoàn thấp hơn nhiều so với nỗi lo của bạn.</li>
+<li><b>Tự làm bảng so sánh</b> giữa bạn và 2 lựa chọn phổ biến khác, trong đó nêu rõ trường hợp nào <i>không</i> nên chọn bạn. Nghe phản trực giác nhưng đây là một trong những nội dung tạo niềm tin mạnh nhất.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 7 ============ -->
+<div class="chude theme-7">
+<h2 class="section-title">📍 Chủ đề 7 — Decision Stage: Closing Without Pressure</h2>
+<span class="genre-tag">GIAI ĐOẠN QUYẾT ĐỊNH</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">decision stage</td><td>Noun phrase</td><td class="ipa">/dɪˈsɪʒən steɪdʒ/</td><td>The final phase where a buyer commits to one specific option.</td><td class="vn">Giai đoạn quyết định — khách chốt chọn một lựa chọn cụ thể</td></tr>
+<tr><td class="word">conversion rate</td><td>Noun phrase</td><td class="ipa">/kənˈvɜːrʒən reɪt/</td><td>The percentage of people who complete the desired action.</td><td class="vn">Tỷ lệ chuyển đổi — % người hoàn tất hành động mong muốn</td></tr>
+<tr><td class="word">checkout friction</td><td>Noun phrase</td><td class="ipa">/ˈtʃɛkaʊt ˈfrɪkʃən/</td><td>Obstacles in the final purchase process that cause abandonment.</td><td class="vn">Ma sát khi thanh toán — vướng mắc khiến khách bỏ giỏ hàng</td></tr>
+<tr><td class="word">cart abandonment</td><td>Noun phrase</td><td class="ipa">/kɑːrt əˈbændənmənt/</td><td>When a buyer adds items but leaves without paying.</td><td class="vn">Bỏ giỏ hàng — thêm vào giỏ rồi không thanh toán</td></tr>
+<tr><td class="word">buyer's remorse</td><td>Noun phrase</td><td class="ipa">/ˈbaɪərz rɪˈmɔːrs/</td><td>Regret felt after a purchase.</td><td class="vn">Hối hận sau mua</td></tr>
+<tr><td class="word">urgency</td><td>Noun</td><td class="ipa">/ˈɜːrdʒənsi/</td><td>A reason to act now rather than later.</td><td class="vn">Tính cấp thiết — lý do phải hành động ngay</td></tr>
+<tr><td class="word">manufactured scarcity</td><td>Noun phrase</td><td class="ipa">/ˌmænjəˈfæktʃərd ˈskɛrsəti/</td><td>Fake limits invented purely to pressure buyers.</td><td class="vn">Khan hiếm giả tạo — bịa ra giới hạn để ép khách (nên tránh)</td></tr>
+<tr><td class="word">friction point</td><td>Noun phrase</td><td class="ipa">/ˈfrɪkʃən pɔɪnt/</td><td>A specific step where users commonly give up.</td><td class="vn">Điểm nghẽn — bước cụ thể mà người dùng hay bỏ cuộc</td></tr>
+<tr><td class="word">reassurance</td><td>Noun</td><td class="ipa">/ˌriːəˈʃʊrəns/</td><td>Information that calms last-moment anxiety.</td><td class="vn">Sự trấn an — thông tin làm dịu lo lắng phút chót</td></tr>
+<tr><td class="word">post-purchase experience</td><td>Noun phrase</td><td class="ipa">/poʊst ˈpɜːrtʃəs ɪkˈspɪriəns/</td><td>Everything the customer experiences after paying.</td><td class="vn">Trải nghiệm sau mua — mọi thứ khách gặp sau khi trả tiền</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>At the <b>decision stage</b>, the hard persuasion work is already done. The buyer wants what you sell and has broadly chosen you. Surprisingly, this is where enormous amounts of revenue are still lost — not through weak arguments, but through <b>checkout friction</b> and unresolved last-second anxiety.</p>
+<p>Industry studies consistently find <b>cart abandonment</b> rates in e-commerce around 70%, and the reasons are rarely dramatic. The most common causes are unexpected shipping costs revealed late, being forced to create an account, a slow or confusing form, and unclear return terms. None of these are persuasion problems. They are design problems.</p>
+<p>The second issue is emotional. Even a committed buyer experiences a brief spike of doubt at the moment of payment — a preview of <b>buyer's remorse</b>. Effective <b>reassurance</b> at this exact point is remarkably powerful: a visible return policy, a security badge, a delivery date, a short line saying "you can cancel anytime in one click".</p>
+<p><b>Urgency</b> genuinely does increase action, which is why it is so heavily used — and so heavily abused. There is an important ethical and practical line here. Real urgency (a genuine deadline, real limited stock, a price change you will actually make) is legitimate and effective. <b>Manufactured scarcity</b> — a countdown timer that resets, "only 2 left" that is always 2 — may lift short-term conversion, but it damages trust permanently once discovered, and increasingly attracts regulatory attention.</p>
+<p>Finally, the sale is not the end. The <b>post-purchase experience</b> determines whether this transaction becomes a repeat customer or a refund request.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy tưởng tượng khách đã đứng ở quầy thu ngân, tay cầm sản phẩm, ví đã mở.</b></p>
+<p>Đây là lúc bạn <i>đã thắng 95%</i>. Vậy mà rất nhiều cửa hàng vẫn để mất khách ngay tại đây. Bằng cách nào?</p>
+<p>① <b>Chi phí bất ngờ:</b> Khách thấy giá 200k, đến lúc thanh toán hiện thêm "phí ship 45k". Cảm giác bị lừa xuất hiện — và nhiều người bỏ đi <i>không phải vì 45k</i>, mà vì cảm giác không được nói thật từ đầu.<br>
+② <b>Bắt làm việc thừa:</b> "Vui lòng tạo tài khoản để tiếp tục." Khách chỉ muốn mua một món hàng, tự nhiên bị bắt điền 6 ô và xác nhận email.<br>
+③ <b>Không rõ ràng:</b> Bao giờ hàng tới? Không vừa thì đổi được không? Không thấy ghi ở đâu cả.</p>
+<p><b>Điều thú vị là:</b> đây <i>không phải</i> vấn đề thuyết phục. Bạn không cần nói hay hơn — bạn cần <b>dọn dẹp đường đi</b>. Trong marketing, phần lớn tiền bị mất ở đáy phễu là do <i>thiết kế lười</i>, không phải do nội dung dở.</p>
+<p><b>Về chuyện tạo cảm giác gấp gáp:</b> Nói "chỉ còn 3 suất cuối" khi thật sự còn 3 suất là hoàn toàn hợp lý. Nhưng đặt đồng hồ đếm ngược mà cứ hết giờ lại tự reset, hay lúc nào cũng "còn 2 sản phẩm cuối cùng" — khách sẽ phát hiện ra. Và khi họ phát hiện, họ không chỉ nghi ngờ cái đồng hồ đó, họ nghi ngờ <b>mọi thứ bạn từng nói</b>. Đổi lấy vài đơn hàng hôm nay bằng cả uy tín lâu dài là một cái giá rất tệ.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Tự mua hàng của chính mình.</b> Dùng điện thoại, bấm từ đầu đến khi thanh toán xong, và <i>bấm giờ</i>. Mỗi ô phải điền, mỗi lần chờ tải, mỗi chỗ bạn phải suy nghĩ "cái này là gì?" đều là một điểm rơi rụng khách.</li>
+<li><b>Hiện toàn bộ chi phí ngay từ đầu.</b> Không có bất ngờ ở bước cuối. Nếu phí ship cao, hãy nói sớm — khách rời đi ở bước 1 vẫn tốt hơn là mất niềm tin ở bước 5.</li>
+<li><b>Đặt 3 câu trấn an ngay cạnh nút thanh toán:</b> ngày giao dự kiến, chính sách đổi trả một dòng, và cam kết bảo mật/hoàn tiền. Chi phí bằng 0, tác động thường thấy rõ.</li>
+<li><b>Chỉ dùng urgency khi nó có thật.</b> Nếu bạn không thể giải thích công khai vì sao có giới hạn đó, đừng dùng.</li>
+<li><b>Thiết kế 24 giờ đầu sau khi mua:</b> một tin nhắn xác nhận thân thiện, hướng dẫn dùng, và một lời cảm ơn. Đây là lúc rẻ nhất để biến người mua một lần thành khách quen.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 8 ============ -->
+<div class="chude theme-8">
+<h2 class="section-title">📍 Chủ đề 8 — Post-Purchase &amp; the Advocacy Loop</h2>
+<span class="genre-tag">SAU MUA HÀNG</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">onboarding</td><td>Noun</td><td class="ipa">/ˈɑːnbɔːrdɪŋ/</td><td>Guiding a new customer to their first successful outcome.</td><td class="vn">Dẫn dắt ban đầu — giúp khách mới đạt kết quả đầu tiên</td></tr>
+<tr><td class="word">time to value</td><td>Noun phrase</td><td class="ipa">/taɪm tuː ˈvæljuː/</td><td>How long it takes a customer to feel the product actually worked.</td><td class="vn">Thời gian tới giá trị — bao lâu thì khách <i>cảm nhận được</i> lợi ích</td></tr>
+<tr><td class="word">cognitive dissonance</td><td>Noun phrase</td><td class="ipa">/ˈkɑːɡnətɪv ˈdɪsənəns/</td><td>Mental discomfort from doubting a decision already made.</td><td class="vn">Bất hòa nhận thức — cảm giác khó chịu khi nghi ngờ quyết định vừa rồi</td></tr>
+<tr><td class="word">retention rate</td><td>Noun phrase</td><td class="ipa">/rɪˈtɛnʃən reɪt/</td><td>The percentage of customers who stay over a given period.</td><td class="vn">Tỷ lệ giữ chân khách</td></tr>
+<tr><td class="word">churn</td><td>Noun</td><td class="ipa">/tʃɜːrn/</td><td>Customers leaving or stopping purchases.</td><td class="vn">Rời bỏ — khách ngừng dùng, ngừng mua</td></tr>
+<tr><td class="word">net promoter score (NPS)</td><td>Noun phrase</td><td class="ipa">/nɛt prəˈmoʊtər skɔːr/</td><td>A survey metric measuring likelihood to recommend, on a 0–10 scale.</td><td class="vn">Chỉ số NPS — đo khả năng khách giới thiệu bạn (thang 0–10)</td></tr>
+<tr><td class="word">brand advocate</td><td>Noun phrase</td><td class="ipa">/brænd ˈædvəkət/</td><td>A customer who actively promotes you unpaid.</td><td class="vn">Người ủng hộ thương hiệu — khách tự nguyện quảng bá cho bạn</td></tr>
+<tr><td class="word">upsell</td><td>Verb / Noun</td><td class="ipa">/ˈʌpsɛl/</td><td>Selling a higher-value version to an existing customer.</td><td class="vn">Bán nâng cấp — bán phiên bản cao hơn cho khách hiện tại</td></tr>
+<tr><td class="word">cross-sell</td><td>Verb / Noun</td><td class="ipa">/krɔːs sɛl/</td><td>Selling a related additional product.</td><td class="vn">Bán chéo — bán thêm sản phẩm liên quan</td></tr>
+<tr><td class="word">referral program</td><td>Noun phrase</td><td class="ipa">/rɪˈfɜːrəl ˈproʊɡræm/</td><td>A structured system rewarding customers for introductions.</td><td class="vn">Chương trình giới thiệu — thưởng cho khách khi giới thiệu người mới</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>The period immediately after a purchase is psychologically fragile. Having just spent money, most buyers experience some degree of <b>cognitive dissonance</b> — a quiet internal question of "did I do the right thing?" Marketing that ignores this window misses one of the cheapest opportunities available.</p>
+<p>The single most important variable here is <b>time to value</b>: how quickly the customer experiences a real, felt benefit. A customer who succeeds in the first few days becomes dramatically more likely to stay, while one who struggles alone will quietly disappear regardless of how good the product objectively is. This is why deliberate <b>onboarding</b> — a welcome message, a simple first step, a check-in — often improves <b>retention rate</b> more than product improvements do.</p>
+<p>Retention deserves attention for straightforward financial reasons. Acquiring a new customer is generally accepted to cost substantially more than keeping an existing one, and existing customers are easier to <b>upsell</b> and <b>cross-sell</b> because trust already exists. Reducing <b>churn</b> by a few percentage points often does more for profit than a similar increase in new customers.</p>
+<p>Beyond retention lies advocacy. A <b>brand advocate</b> generates growth that is both free and unusually persuasive, because recommendations from real people carry trust that advertising cannot buy. Tools like <b>net promoter score</b> help identify who these people are, but the deeper point is that advocacy is <i>earned</i> through experience and then <i>activated</i> through a simple, well-timed ask — which is what a good <b>referral program</b> formalises.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Bạn vừa mua một chiếc máy tập thể dục 12 triệu. Chuyện gì xảy ra trong đầu bạn tối hôm đó?</b></p>
+<p>Rất có thể bạn hơi lo: <i>"Mình có dùng thật không hay lại để phơi quần áo? 12 triệu có phí không?"</i> Đó chính là <b>bất hòa nhận thức</b> — cảm giác lăn tăn sau khi tiêu tiền. Ai cũng có, kể cả khi món hàng rất tốt.</p>
+<p><b>Bây giờ so sánh hai kịch bản:</b></p>
+<p><b>Cửa hàng A:</b> Giao máy, ký nhận, hết. Ba tuần sau bạn vẫn chưa lắp xong vì không hiểu hướng dẫn. Máy nằm góc phòng. Bạn thấy tiếc tiền, và <i>chắc chắn</i> sẽ không giới thiệu cho ai.</p>
+<p><b>Cửa hàng B:</b> Hôm sau nhắn tin: <i>"Anh lắp xong chưa ạ? Em gửi video 3 phút hướng dẫn nhé."</i> Ngày thứ 4 nhắn tiếp: <i>"Anh thử bài tập 10 phút này, dễ bắt đầu nhất."</i> Đến ngày thứ 10 bạn đã tập được 5 buổi, thấy người khỏe hơn thật.</p>
+<p><b>Khoảng cách giữa A và B chính là "time to value" — thời gian để khách <i>cảm nhận được</i> giá trị.</b> Cửa hàng B tốn thêm 2 tin nhắn, nhưng đổi lại: khách không đòi trả hàng, khách mua thêm phụ kiện, và khách kể cho đồng nghiệp. Cửa hàng A tốn 0 đồng nhưng mất tất cả những thứ đó.</p>
+<p><b>Một con số đáng suy nghĩ:</b> hầu hết các nghiên cứu đều đồng ý rằng kiếm một khách hàng mới tốn kém hơn nhiều so với giữ một khách cũ. Vậy mà đa số doanh nghiệp nhỏ dồn gần như toàn bộ ngân sách vào việc <i>tìm người lạ</i>, trong khi nhóm khách đã tin mình thì bỏ mặc.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Thiết kế chuỗi 3 tin nhắn sau mua:</b> ngày 1 (xác nhận + hướng dẫn bước đầu), ngày 3–5 (một mẹo giúp dùng hiệu quả hơn), ngày 10–14 (hỏi thăm kết quả + mời phản hồi). Đây là việc đơn giản nhất trong toàn bộ tài liệu này nhưng lại bị bỏ qua nhiều nhất.</li>
+<li><b>Rút ngắn "time to value":</b> Hỏi bản thân "khách cần bao lâu để thấy kết quả đầu tiên?" rồi tìm cách rút ngắn thời gian đó xuống một nửa. Đây là đòn bẩy giữ chân khách mạnh nhất.</li>
+<li><b>Xin đánh giá đúng thời điểm:</b> ngay sau khi khách đạt được kết quả đầu tiên, chứ không phải ngay sau khi trả tiền. Lúc đó lời khen của họ vừa thật lòng hơn vừa cụ thể hơn.</li>
+<li><b>Đo tỷ lệ khách quay lại</b> ít nhất theo quý. Nếu bạn chỉ đo doanh thu mà không đo tỷ lệ quay lại, bạn có thể đang che giấu một lỗ hổng đang lớn dần.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 9 ============ -->
+<div class="chude theme-9">
+<h2 class="section-title">📍 Chủ đề 9 — Funnel Leakage &amp; Conversion Bottlenecks</h2>
+<span class="genre-tag">CHẨN ĐOÁN VẤN ĐỀ</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">funnel leakage</td><td>Noun phrase</td><td class="ipa">/ˈfʌnl ˈliːkɪdʒ/</td><td>Losing potential customers at specific stages of the journey.</td><td class="vn">Rò rỉ phễu — mất khách ở những chặng cụ thể</td></tr>
+<tr><td class="word">bottleneck</td><td>Noun</td><td class="ipa">/ˈbɑːtlnɛk/</td><td>The single stage limiting overall performance most.</td><td class="vn">Điểm nghẽn — chặng kìm hãm toàn bộ kết quả</td></tr>
+<tr><td class="word">conversion path</td><td>Noun phrase</td><td class="ipa">/kənˈvɜːrʒən pæθ/</td><td>The exact sequence of steps a person takes to convert.</td><td class="vn">Lộ trình chuyển đổi — chuỗi bước cụ thể dẫn tới hành động</td></tr>
+<tr><td class="word">diagnostic</td><td>Adjective</td><td class="ipa">/ˌdaɪəɡˈnɑːstɪk/</td><td>Aimed at identifying the cause of a problem.</td><td class="vn">Mang tính chẩn đoán — nhằm tìm ra nguyên nhân</td></tr>
+<tr><td class="word">stage conversion rate</td><td>Noun phrase</td><td class="ipa">/steɪdʒ kənˈvɜːrʒən reɪt/</td><td>The percentage moving from one specific stage to the next.</td><td class="vn">Tỷ lệ chuyển đổi từng chặng</td></tr>
+<tr><td class="word">qualitative data</td><td>Noun phrase</td><td class="ipa">/ˈkwɑːlɪteɪtɪv ˈdeɪtə/</td><td>Descriptive insight explaining <i>why</i> something happens.</td><td class="vn">Dữ liệu định tính — giải thích <i>vì sao</i></td></tr>
+<tr><td class="word">quantitative data</td><td>Noun phrase</td><td class="ipa">/ˈkwɑːntɪteɪtɪv ˈdeɪtə/</td><td>Numerical data showing <i>what</i> is happening.</td><td class="vn">Dữ liệu định lượng — cho biết <i>cái gì</i> đang xảy ra</td></tr>
+<tr><td class="word">heatmap</td><td>Noun</td><td class="ipa">/ˈhiːtmæp/</td><td>A visual showing where users click, scroll, or stop on a page.</td><td class="vn">Bản đồ nhiệt — hình ảnh cho thấy khách bấm/lướt tới đâu</td></tr>
+<tr><td class="word">root cause</td><td>Noun phrase</td><td class="ipa">/ruːt kɔːz/</td><td>The underlying reason behind a visible symptom.</td><td class="vn">Nguyên nhân gốc rễ</td></tr>
+<tr><td class="word">prioritisation</td><td>Noun</td><td class="ipa">/praɪˌɔːrətaɪˈzeɪʃən/</td><td>Deciding which problem to fix first for maximum impact.</td><td class="vn">Sắp thứ tự ưu tiên — chọn sửa cái nào trước</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p>When results are disappointing, the instinctive reaction is usually "we need more traffic". Often this is exactly wrong. If your <b>conversion path</b> loses 95% of visitors at one specific step, doubling traffic simply doubles the number of people you fail. Fixing the <b>bottleneck</b> first makes every future visitor more valuable.</p>
+<p>A <b>diagnostic</b> approach starts by measuring the <b>stage conversion rate</b> between every pair of steps, rather than looking only at the final number. Suppose 10,000 people see an ad, 500 click, 300 view the pricing page, 40 start checkout, and 8 buy. The overall conversion rate of 0.08% tells you almost nothing useful. But the step-by-step view immediately reveals something specific: only 13% of people who reached pricing started checkout — that gap is where the money is.</p>
+<p>Numbers alone, however, cannot explain <i>why</i>. <b>Quantitative data</b> tells you what is happening; <b>qualitative data</b> tells you the reason. Tools like a <b>heatmap</b> show where people stop scrolling, while a one-question exit survey ("What almost stopped you today?") or five short customer interviews will usually surface the <b>root cause</b> faster than weeks of analysis.</p>
+<p>Finally, <b>prioritisation</b> matters more than effort. Fixing a step that affects 5% of users produces a small gain even if executed perfectly. Fixing the step where 87% of people disappear can transform the business. Disciplined marketers resist the temptation to improve everything at once and instead attack the largest, most fixable leak first.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy tưởng tượng bạn có một cái xô thủng đang hứng nước.</b></p>
+<p>Nước chảy vào là khách hàng. Lỗ thủng là những chỗ khách bỏ đi. Khi thấy xô mãi không đầy, phản xạ đầu tiên của hầu hết mọi người là <b>mở vòi to hơn</b> — tức là chi thêm tiền quảng cáo để kéo thêm người vào.</p>
+<p>Nhưng nếu cái xô thủng một lỗ to ở giữa, thì mở vòi gấp đôi chỉ khiến nước chảy ra ngoài gấp đôi. Bạn tốn gấp đôi tiền để có cùng một kết quả.</p>
+<p><b>Cách làm đúng là bịt lỗ trước.</b> Nhưng muốn bịt thì phải biết lỗ nằm đâu — và đây là chỗ hầu hết mọi người bỏ qua.</p>
+<p><b>Ví dụ cụ thể với một shop bán mỹ phẩm online:</b><br>
+• 10.000 người thấy quảng cáo<br>
+• 500 người bấm vào (5% — bình thường)<br>
+• 300 người xem trang sản phẩm (60% — tốt)<br>
+• 40 người bấm "mua hàng" (chỉ 13% — <b>đây là lỗ thủng!</b>)<br>
+• 8 người thanh toán xong (20% — cũng có vấn đề)</p>
+<p>Nhìn con số cuối cùng "8/10.000" bạn chỉ thấy tuyệt vọng. Nhưng nhìn <i>từng chặng</i>, bạn thấy ngay: <b>vấn đề nằm ở chỗ người ta xem sản phẩm rồi không bấm mua.</b> Có thể vì giá không rõ, ảnh xấu, thiếu đánh giá, hoặc không ghi phí ship.</p>
+<p><b>Và đây là mẹo quan trọng:</b> con số cho bạn biết <i>lỗ ở đâu</i>, nhưng chỉ có <b>hỏi khách</b> mới cho bạn biết <i>vì sao</i>. Đôi khi chỉ cần nhắn hỏi 5 người đã xem mà không mua: "Anh/chị thấy còn điều gì khiến mình chưa yên tâm ạ?" — 5 câu trả lời đó có giá trị hơn cả tháng ngồi đoán.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Vẽ phễu của bạn ra giấy với 4–5 con số.</b> Không cần phần mềm đắt tiền. Chỉ cần: bao nhiêu người thấy → bấm → hỏi/xem kỹ → mua. Tính tỷ lệ giữa từng cặp.</li>
+<li><b>Khoanh tròn chặng tụt mạnh nhất</b> và chỉ tập trung vào đúng chặng đó trong 30 ngày tới. Đừng sửa cùng lúc 5 thứ — bạn sẽ không biết thứ nào có tác dụng.</li>
+<li><b>Hỏi 5 khách thật.</b> Không cần khảo sát chuyên nghiệp. Một câu duy nhất: <i>"Điều gì suýt khiến anh/chị không mua?"</i> Câu này thường moi ra sự thật tốt hơn câu "Anh/chị thấy sản phẩm thế nào?"</li>
+<li><b>Nguyên tắc ưu tiên:</b> sửa chỗ ảnh hưởng đến nhiều người nhất và dễ sửa nhất trước. Một dòng chữ ghi rõ phí ship có thể đáng giá hơn cả tháng thiết kế lại website.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ CHỦ ĐỀ 10 ============ -->
+<div class="chude theme-10">
+<h2 class="section-title">📍 Chủ đề 10 — Full-Funnel Measurement</h2>
+<span class="genre-tag">ĐO LƯỜNG TOÀN PHỄU</span>
+
+<h3 class="tbl-label">📗 Bảng từ vựng chuyên ngành</h3>
+<table class="vocab">
+<tr><th>Thuật ngữ</th><th>Loại từ</th><th>Phiên âm</th><th>Định nghĩa (Anh)</th><th>Nghĩa &amp; giải thích (Việt)</th></tr>
+<tr><td class="word">full-funnel measurement</td><td>Noun phrase</td><td class="ipa">/fʊl ˈfʌnl ˈmɛʒərmənt/</td><td>Tracking performance across every stage, not just the final sale.</td><td class="vn">Đo lường toàn phễu — theo dõi mọi chặng, không chỉ đơn hàng cuối</td></tr>
+<tr><td class="word">leading indicator</td><td>Noun phrase</td><td class="ipa">/ˈliːdɪŋ ˈɪndɪkeɪtər/</td><td>An early signal that predicts future results.</td><td class="vn">Chỉ báo sớm — dấu hiệu báo trước kết quả tương lai</td></tr>
+<tr><td class="word">lagging indicator</td><td>Noun phrase</td><td class="ipa">/ˈlæɡɪŋ ˈɪndɪkeɪtər/</td><td>A result you can only see after the fact, such as revenue.</td><td class="vn">Chỉ báo trễ — kết quả chỉ thấy được sau khi mọi thứ đã xảy ra</td></tr>
+<tr><td class="word">vanity metric</td><td>Noun phrase</td><td class="ipa">/ˈvænəti ˈmɛtrɪk/</td><td>A number that looks impressive but does not affect business outcomes.</td><td class="vn">Chỉ số phù phiếm — nhìn oai nhưng không ảnh hưởng kết quả kinh doanh</td></tr>
+<tr><td class="word">actionable metric</td><td>Noun phrase</td><td class="ipa">/ˈækʃənəbl ˈmɛtrɪk/</td><td>A number that changes what you decide to do next.</td><td class="vn">Chỉ số hành động được — con số làm thay đổi quyết định của bạn</td></tr>
+<tr><td class="word">attribution</td><td>Noun</td><td class="ipa">/ˌætrɪˈbjuːʃən/</td><td>Assigning credit for a sale to specific marketing touchpoints.</td><td class="vn">Quy kết — gán công cho kênh/điểm chạm nào tạo ra đơn hàng</td></tr>
+<tr><td class="word">baseline</td><td>Noun</td><td class="ipa">/ˈbeɪslaɪn/</td><td>The starting reference point you measure change against.</td><td class="vn">Mốc gốc — điểm xuất phát để so sánh</td></tr>
+<tr><td class="word">benchmark</td><td>Noun</td><td class="ipa">/ˈbɛntʃmɑːrk/</td><td>A standard, often an industry average, used for comparison.</td><td class="vn">Chuẩn so sánh — thường là mức trung bình ngành</td></tr>
+<tr><td class="word">statistical significance</td><td>Noun phrase</td><td class="ipa">/stəˈtɪstɪkl sɪɡˈnɪfɪkəns/</td><td>Confidence that a result is real rather than random chance.</td><td class="vn">Ý nghĩa thống kê — đủ chắc chắn rằng kết quả không phải do may rủi</td></tr>
+<tr><td class="word">dashboard</td><td>Noun</td><td class="ipa">/ˈdæʃbɔːrd/</td><td>A single screen summarising the metrics that matter.</td><td class="vn">Bảng điều khiển — một màn hình tóm tắt các chỉ số quan trọng</td></tr>
+</table>
+
+<h3 class="tbl-label">📖 Nội dung</h3>
+<div class="passage-box">
+<p><b>Full-funnel measurement</b> exists to solve a specific organisational problem: teams that measure only revenue will systematically underinvest in everything that creates revenue <i>later</i>. If the only number reported is sales this month, brand-building work looks like pure cost, and it gets cut — usually right before the pipeline dries up.</p>
+<p>The solution is to pair <b>lagging indicators</b> with <b>leading indicators</b>. Revenue, profit, and customer count are lagging: accurate but backward-looking. Leading indicators — branded search volume, email list growth, returning visitors, qualified conversations started — move earlier and give you time to react while it still matters.</p>
+<p>A second discipline is separating <b>vanity metrics</b> from <b>actionable metrics</b>. The test is simple and unforgiving: <i>if this number doubled tomorrow, would I do anything differently?</i> Total follower count usually fails that test. Percentage of new customers who mention finding you through a specific channel usually passes it.</p>
+<p>Beginners frequently misread noise as signal. A campaign that produced 12 sales instead of 9 has not necessarily improved; with numbers that small, the difference may be random. Understanding <b>statistical significance</b> — even informally, as "is this sample big enough to trust?" — prevents expensive decisions based on luck.</p>
+<p>Finally, measurement is meaningless without a <b>baseline</b>. Before changing anything, record where you currently stand. Otherwise, in three months you will have opinions instead of evidence.</p>
+</div>
+
+<div class="easy-box">
+<h4>💡 Hiểu đơn giản (dành cho người ngoài ngành)</h4>
+<p><b>Hãy nghĩ về việc giảm cân.</b></p>
+<p><b>Chỉ báo trễ (lagging indicator)</b> là con số trên cân. Nó chính xác, nhưng nó chỉ cho bạn biết <i>chuyện đã rồi</i>. Nếu bạn chỉ nhìn cân và tuần này tăng 1kg, bạn đã mất cả tuần rồi mới biết mình đi sai đường.</p>
+<p><b>Chỉ báo sớm (leading indicator)</b> là: số bữa ăn đúng kế hoạch, số buổi tập, số giờ ngủ. Những con số này thay đổi <i>trước</i> cân nặng. Nếu tuần này bạn chỉ tập 1 buổi thay vì 4, bạn biết ngay từ thứ Tư rằng tuần sau cân sẽ không giảm — và còn kịp sửa.</p>
+<p><b>Trong marketing cũng y hệt:</b> Doanh thu tháng này là "cân nặng". Còn "số buổi tập" là: có bao nhiêu người mới biết đến bạn, bao nhiêu người tìm kiếm tên thương hiệu bạn, bao nhiêu cuộc trò chuyện thật sự bắt đầu. Nếu chỉ nhìn doanh thu, bạn luôn phát hiện vấn đề <i>quá muộn</i>.</p>
+<p><b>Về "chỉ số phù phiếm" (vanity metric):</b> Có 50.000 người theo dõi nghe rất oai. Nhưng hãy tự hỏi câu này — <i>"Nếu ngày mai con số đó tăng gấp đôi, tôi sẽ làm gì khác đi?"</i> Nếu câu trả lời là "không làm gì khác cả", thì đó là chỉ số phù phiếm. Ngược lại, nếu biết "70% khách mới đến từ TikTok", bạn sẽ ngay lập tức quyết định dồn sức vào đâu — đó mới là chỉ số có ích.</p>
+<p><b>Một cảnh báo quan trọng:</b> đừng vội mừng hay vội buồn với số nhỏ. Tuần này bán được 12 đơn thay vì 9 đơn <i>không</i> chứng minh chiến dịch mới hiệu quả — chênh lệch 3 đơn hoàn toàn có thể do may rủi. Nhiều người đổ tiền vào một hướng sai chỉ vì hiểu nhầm một con số ngẫu nhiên là thành công.</p>
+</div>
+
+<div class="apply-box">
+<h4>🎯 Ứng dụng thực tế</h4>
+<ul>
+<li><b>Chọn đúng 5 chỉ số, không hơn.</b> Ví dụ cho một shop nhỏ: (1) người tiếp cận mới, (2) tin nhắn/hỏi hàng, (3) tỷ lệ chốt đơn, (4) giá trị đơn trung bình, (5) tỷ lệ khách quay lại. Theo dõi 5 con số này hàng tuần còn tốt hơn theo dõi 30 con số mỗi tháng một lần.</li>
+<li><b>Ghi lại mốc gốc ngay hôm nay</b> trước khi thay đổi bất cứ điều gì. Không có mốc gốc thì mọi cải tiến sau này chỉ là cảm tính.</li>
+<li><b>Thêm một câu hỏi vào quy trình bán hàng:</b> "Anh/chị biết đến bên em qua đâu ạ?" Đây là cách đo lường rẻ nhất, và với doanh nghiệp nhỏ nó thường chính xác hơn nhiều công cụ phức tạp.</li>
+<li><b>Quy tắc chống tự lừa dối:</b> trước khi kết luận điều gì hiệu quả, hãy hỏi "mẫu này đủ lớn chưa?" Với vài chục đơn hàng, hãy coi mọi kết luận là <i>giả thuyết</i>, chưa phải sự thật.</li>
+</ul>
+</div>
+</div>
+
+<div class="copyright">
+<b>Ghi chú biên soạn:</b> Tài liệu này là nội dung tự biên soạn phục vụ mục đích học tập cá nhân, được viết cho người <b>không có nền tảng chuyên ngành marketing</b>. Các khái niệm học thuật được nêu tên nguồn gốc khi phù hợp (ví dụ: mô hình AIDA của E. St. Elmo Lewis; khái niệm mental availability gắn với nghiên cứu của Viện Ehrenberg-Bass và Byron Sharp; mô hình flywheel được HubSpot phổ biến rộng rãi dựa trên ý tưởng bánh đà của Jim Collins; khái niệm "messy middle" từ nghiên cứu hành vi mua sắm của Google). Các con số minh họa trong ví dụ là số giả định dùng để giảng giải, không phải số liệu thống kê thực tế của một doanh nghiệp cụ thể. Các tỷ lệ tham khảo (như tỷ lệ bỏ giỏ hàng khoảng 70%) là mức thường được ghi nhận trong nhiều báo cáo ngành thương mại điện tử và có thể thay đổi theo ngành hàng, thị trường và thời điểm. — <b>Phần 1/10 · Chủ đề 1–10</b>
+</div>
+
+</body>
+</html>
