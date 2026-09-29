@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-09-20",
+  "last_updated": "2026-09-28",
   "current_module": "00",
-  "next_action_suggestion": "Bắt đầu module 00 — Cài đặt công cụ. Đọc README.md để biết quy trình học 1 module.",
+  "next_action_suggestion": "Hoàn tất module 00: vào tài khoản GA4 Demo (analytics.google.com/analytics/web/demoAccount) và làm 5 bài tập trong logs/nhat-ky-hoc-tap.md.",
   "modules": [
-    { "module_id": "00", "ten_module": "Cài đặt công cụ", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
+    { "module_id": "00", "ten_module": "Cài đặt công cụ", "trang_thai": "dang_hoc", "ngay_bat_dau": "2026-09-28", "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "GA4 đã tạo cho WordLoop (G-6X5S109XKM), kiểm chứng bằng Realtime. Còn thiếu: GA4 Demo. Chi tiết quá trình học: logs/nhat-ky-hoc-tap.md." },
     { "module_id": "01", "ten_module": "Tổng quan Digital Marketing & Customer Journey", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
     { "module_id": "02", "ten_module": "Marketing Funnel", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
     { "module_id": "03", "ten_module": "Buyer Persona & Nghiên cứu thị trường", "trang_thai": "chua_bat_dau", "ngay_bat_dau": null, "ngay_hoan_thanh": null, "diem_quiz": null, "danh_gia_bai_tap": null, "submission_file": null, "ghi_chu": "" },
