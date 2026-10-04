@@ -80,7 +80,7 @@ và local business tại Việt Nam** — đúng đối tượng học viên kho
 Nếu persona của bạn (module 03) thuộc nhóm: cần tư vấn kỹ trước khi mua, ở tỉnh/thành ngoài 2
 thành phố lớn, hoặc là khách hàng lớn tuổi hơn — Zalo Ads thường hiệu quả hơn TikTok Ads.
 
-## 4. So sánh nhanh 3 nền tảng (bổ sung Facebook từ module 05)
+## 4. So sánh nhanh 4 nền tảng (3 nền tảng của module này + Facebook từ module 05)
 
 | Tiêu chí | Facebook Ads | TikTok Ads | Google Ads | Zalo Ads |
 |---|---|---|---|---|

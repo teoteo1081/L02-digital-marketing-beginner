@@ -7,8 +7,11 @@
 
 Meta Ads Manager có 3 cấp, từ trên xuống:
 
-1. **Campaign (Chiến dịch)** — nơi bạn chọn **mục tiêu** (objective): nhận diện thương hiệu, lưu
-   lượng truy cập, tin nhắn, chuyển đổi, doanh số...
+1. **Campaign (Chiến dịch)** — nơi bạn chọn **mục tiêu** (objective). Hiện Meta gom lại còn **6
+   mục tiêu**: **Awareness** (Nhận biết), **Traffic** (Lưu lượng truy cập), **Engagement** (Tương
+   tác — gồm cả nhận tin nhắn), **Leads** (Khách hàng tiềm năng), **App promotion** (Quảng bá ứng
+   dụng), **Sales** (Doanh số). Nếu xem video/tài liệu cũ thấy tên khác (ví dụ "Conversions",
+   "Messages", "Reach" đứng riêng) — đó là tên trước năm 2022, nay đã nằm bên trong 6 mục tiêu này.
 2. **Ad Set (Nhóm quảng cáo)** — nơi bạn cài **đối tượng targeting**, ngân sách, lịch chạy, vị trí
    hiển thị.
 3. **Ad (Quảng cáo)** — nội dung thực tế khách nhìn thấy: hình ảnh/video, tiêu đề, mô tả, nút CTA.
@@ -39,12 +42,21 @@ lượng tương tác → Lookalike khi đã có dữ liệu khách hàng đủ 
   định.
 - **Ngân sách trọn đời (Lifetime Budget)**: Facebook tự phân bổ trong khoảng thời gian bạn đặt,
   phù hợp khi chạy chiến dịch có deadline rõ ràng (ví dụ khuyến mãi 7 ngày).
-- **CBO (Campaign Budget Optimization)**: để Facebook tự phân bổ ngân sách giữa các Ad Set, phù
-  hợp khi bạn test nhiều đối tượng cùng lúc và không muốn tự chia tay ngân sách.
+- **Advantage campaign budget** (tên cũ: **CBO** — Campaign Budget Optimization): để Facebook tự
+  phân bổ ngân sách giữa các Ad Set, phù hợp khi bạn test nhiều đối tượng cùng lúc và không muốn
+  tự chia tay ngân sách. Tài liệu cũ vẫn hay gọi là "CBO", bạn cứ hiểu là cùng một thứ.
 
-Gợi ý cho người mới: bắt đầu với ngân sách nhỏ (đủ để có ít nhất 50 lượt click/ngày), chạy tối
-thiểu 3-4 ngày trước khi đánh giá, tránh sửa quảng cáo liên tục (mỗi lần sửa lớn, Facebook cần
-thời gian "học lại" đối tượng — gọi là learning phase).
+Gợi ý cho người mới: bắt đầu với ngân sách nhỏ, chạy tối thiểu 3-4 ngày trước khi đánh giá, tránh
+sửa quảng cáo liên tục.
+
+**Learning phase (giai đoạn học)** — giải thích dễ hiểu: khi mới chạy, Facebook chưa biết nên
+đưa quảng cáo cho ai, nên nó "thử" nhiều người khác nhau. Theo Meta, mỗi Ad Set cần khoảng **50
+kết quả trong 7 ngày** (kết quả = đúng thứ bạn chọn tối ưu: tin nhắn, đơn hàng...) thì mới "học
+xong" và chạy ổn định. Lưu ý là **50 kết quả/tuần**, không phải 50 click/ngày. Mỗi lần sửa lớn
+(đổi mạnh ngân sách, đổi nội dung, đổi đối tượng), Facebook phải học lại từ đầu.
+
+Với ngân sách nhỏ, rất khó đạt 50 kết quả/tuần — điều đó **bình thường**. Đừng hoảng khi thấy chữ
+"Learning limited" (học bị giới hạn); chỉ cần đừng sửa liên tục và đánh giá theo xu hướng vài ngày.
 
 ## 4. Nội dung quảng cáo hiệu quả — công thức đơn giản
 
@@ -70,3 +82,9 @@ thời gian "học lại" đối tượng — gọi là learning phase).
 - Targeting nên đi từ Core Audience → Custom Audience → Lookalike khi có đủ dữ liệu.
 - Nội dung quảng cáo tốt cần: hook mạnh, giá trị rõ, bằng chứng xã hội, CTA cụ thể.
 - Luôn gắn kết quả quảng cáo với ROAS, không chỉ nhìn CTR/CPC đơn lẻ.
+
+## Nguồn tham khảo
+
+- Meta — Cách chọn mục tiêu quảng cáo trong Ads Manager: https://en-gb.facebook.com/business/help/1438417719786914
+- Meta — Giới thiệu learning phase: https://www.facebook.com/business/help/112167992830700/
+- Meta — Advantage+ campaign budget (trước đây là campaign budget optimization): https://www.facebook.com/business/ads/meta-advantage-plus/budget

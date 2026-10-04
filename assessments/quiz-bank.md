@@ -7,11 +7,17 @@ mục tiêu là để bạn tự biết mình đã hiểu chưa trước khi qua
 
 ## Module 00 — Cài đặt công cụ
 
-1. Kênh nào phù hợp nhất để **chốt đơn qua chat trực tiếp** tại Việt Nam?
-   a) Google Ads  b) Zalo OA  c) YouTube  d) Display Ads
-   **Đáp án: b** — Zalo OA/chat là kênh chốt đơn phổ biến nhất tại VN.
+1. Mã nào dưới đây là **Measurement ID** (mã đo lường, dùng để gắn vào website)?
+   a) `556482840`  b) `G-6X5S109XKM`  c) `a409949355`  d) `UA-12345-1`
+   **Đáp án: b** — Measurement ID bắt đầu bằng `G-`. Dãy toàn số (a) là **Property ID**. `a…` (c)
+   là số tài khoản (Account) trong đường link. `UA-` (d) là mã của Analytics đời cũ, đã ngừng.
 
-2. Vì sao module này "không tính điểm" nhưng vẫn bắt buộc?
+2. Bạn vừa gắn thẻ GA4, mở báo cáo Tổng quan thấy "chưa có dữ liệu". Cách nhanh nhất để biết cài
+   đúng chưa là gì?
+   **Đáp án gợi ý:** mở website trên 1 tab khác, rồi xem báo cáo **Thời gian thực (Realtime)**.
+   Thấy chính mình (1 người, Vietnam) là cài đúng. Báo cáo Tổng quan cần 24–48 giờ mới có số.
+
+3. Vì sao module này "không tính điểm" nhưng vẫn bắt buộc?
    **Đáp án gợi ý:** vì đây là điều kiện tiên quyết — không có tài khoản thì không thể thực hành
    các module sau.
 

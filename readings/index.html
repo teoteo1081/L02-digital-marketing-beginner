@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bài đọc Digital Marketing</title>
+<style>
+:root{--bg:#fffaf3;--card:#fff;--text:#2b2420;--muted:#7a6e66;--accent:#e08e45;--teal:#0f3d3e;--soft:#fff1e0;--border:#efe3d3;--ok:#2e8b57;--bad:#c0392b;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1a18;--card:#28231f;--text:#f3ebe3;--muted:#b3a79c;--accent:#f0a35e;--teal:#8fd3c9;--soft:#3a2f26;--border:#3d352e;--ok:#6fcf97;--bad:#ff8a7a;}}
+:root[data-theme="dark"]{--bg:#1d1a18;--card:#28231f;--text:#f3ebe3;--muted:#b3a79c;--accent:#f0a35e;--teal:#8fd3c9;--soft:#3a2f26;--border:#3d352e;--ok:#6fcf97;--bad:#ff8a7a;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding:0 16px 60px}
+.wrap{max-width:760px;margin:0 auto}
+header{padding:24px 0 8px}
+h1{color:var(--teal);font-size:1.5rem;margin:0}
+.sub{color:var(--muted);margin:.2rem 0 1rem}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.tabs button{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.9rem}
+.tabs button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.card h2{font-size:1.05rem;color:var(--teal);margin:0 0 8px}
+ul{padding-left:20px;margin:0}
+.ex{background:var(--soft);border-radius:10px;padding:10px 12px;margin-top:10px}
+.en-type{display:inline-block;font-size:.75rem;font-weight:700;background:var(--teal);color:var(--bg);padding:2px 8px;border-radius:999px}
+.en-head{font-weight:600;margin:8px 0}
+.en-text{white-space:pre-wrap}
+.word{cursor:help;border-bottom:2px dotted var(--accent)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+td,th{text-align:left;padding:6px 4px;border-bottom:1px solid var(--border);vertical-align:top}
+.tbl{overflow-x:auto}
+.q{margin-bottom:14px}
+.q p{margin:0 0 6px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font:inherit;cursor:pointer}
+.opt.right{border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.wrong{border-color:var(--bad);color:var(--bad)}
+.why{font-size:.9rem;color:var(--muted);margin-top:4px}
+.score{font-weight:700;color:var(--accent)}
+a{color:var(--teal)}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tools button{border:none;background:var(--teal);color:var(--bg);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>📚 Bài đọc Digital Marketing</h1>
+  <p class="sub">Mỗi bài có 3 phần: đọc nhanh bằng tiếng Việt, đọc tiếng Anh kiểu TOEIC Part 7, và 3 câu hỏi tự chấm 🐣</p>
+</header>
+<div class="tabs" id="tabs"></div>
+<main id="main"></main>
+</div>
+<script src="readings.js"></script>
+<script>
+const R = window.DM_READINGS || [];
+const ABC = ["A","B","C","D"];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function store(k, v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k, v); }catch(e){ return null; } }
+
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.9;
+  speechSynthesis.speak(u);
+}
+
+// Tô đậm từ vựng trong đoạn tiếng Anh, rê chuột/chạm để xem nghĩa
+function highlight(text, vocab){
+  let html = esc(text);
+  vocab.forEach(v => {
+    const word = v.en.replace(/\s*\(.*?\)/, '').replace(/…/g, '').trim().split(' ')[0];
+    if(word.length < 3) return;
+    const re = new RegExp('\\b(' + word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\w*)', 'i');
+    html = html.replace(re, `<span class="word" title="${esc(v.vi)}">$1</span>`);
+  });
+  return html;
+}
+
+function render(id){
+  const r = R.find(x => x.id === id) || R[0];
+  store('dm_reading_last', r.id);
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.id === r.id));
+  document.getElementById('main').innerHTML = `
+    <div class="card">
+      <h2>🇻🇳 Module ${r.id} · ${esc(r.title)}</h2>
+      <ul>${r.vi.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      <div class="ex">💡 <b>Ví dụ đời thường:</b> ${esc(r.example)}</div>
+    </div>
+    <div class="card">
+      <div class="tools"><span class="en-type">${esc(r.en.type)}</span>
+        <button id="say">🔊 Nghe đọc</button><button id="stop">⏹ Dừng</button></div>
+      <div class="en-head">${esc(r.en.heading)}</div>
+      <div class="en-text">${highlight(r.en.text, r.vocab)}</div>
+      <p class="why">Chữ có gạch chân chấm: rê chuột hoặc chạm để xem nghĩa.</p>
+    </div>
+    <div class="card">
+      <h2>📝 Từ vựng TOEIC</h2>
+      <div class="tbl"><table><tr><th>Từ</th><th>Nghĩa</th><th>Ví dụ</th></tr>
+      ${r.vocab.map(v => `<tr><td><b>${esc(v.en)}</b></td><td>${esc(v.vi)}</td><td>${esc(v.ex)}</td></tr>`).join('')}
+      </table></div>
+    </div>
+    <div class="card">
+      <h2>✅ Câu hỏi kiểu TOEIC <span class="score" id="score"></span></h2>
+      ${r.questions.map((q,i) => `<div class="q" data-i="${i}"><p>${i+1}. ${esc(q.q)}</p>
+        ${q.options.map((o,j) => `<button class="opt" data-j="${j}">(${ABC[j]}) ${esc(o)}</button>`).join('')}
+        <div class="why" hidden></div></div>`).join('')}
+    </div>
+    ${r.sources.length ? `<div class="card"><h2>🔗 Nguồn tham khảo</h2><ul>${r.sources.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></li>`).join('')}</ul></div>` : ''}
+  `;
+  document.getElementById('say').onclick = () => speak(r.en.text);
+  document.getElementById('stop').onclick = () => 'speechSynthesis' in window && speechSynthesis.cancel();
+  let done = 0, right = 0;
+  document.querySelectorAll('.q').forEach(box => {
+    const q = r.questions[+box.dataset.i];
+    box.querySelectorAll('.opt').forEach(btn => btn.onclick = () => {
+      if(box.dataset.done) return;
+      box.dataset.done = 1; done++;
+      const j = +btn.dataset.j;
+      if(j === q.answer) right++; else btn.classList.add('wrong');
+      box.querySelectorAll('.opt')[q.answer].classList.add('right');
+      const why = box.querySelector('.why'); why.hidden = false;
+      why.textContent = (j === q.answer ? '🎉 Đúng rồi! ' : '🙈 Chưa đúng. ') + q.explain;
+      if(done === r.questions.length) document.getElementById('score').textContent = `· ${right}/${done}`;
+    });
+  });
+}
+
+document.getElementById('tabs').innerHTML = R.map(r => `<button data-id="${r.id}">${r.id}</button>`).join('');
+document.querySelectorAll('#tabs button').forEach(b => b.onclick = () => { render(b.dataset.id); window.scrollTo(0,0); });
+const fromHash = location.hash.replace('#','');
+render(R.some(r => r.id === fromHash) ? fromHash : (store('dm_reading_last') || '00'));
+</script>
+</body>
+</html>

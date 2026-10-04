@@ -1,7 +1,7 @@
 # Sổ tay kiến thức Digital Marketing (TJ)
 
 > Tổng hợp những câu TJ đã hỏi và câu trả lời, viết lại gọn để ôn. Nhật ký quá trình học nằm ở [nhat-ky-hoc-tap.md](nhat-ky-hoc-tap.md).
-> Cập nhật lần cuối: 2026-09-29.
+> Cập nhật lần cuối: 2026-10-04.
 
 **Mục lục**
 1. [GA4 là gì, cấu trúc 3 cấp](#1-ga4-là-gì-cấu-trúc-3-cấp)
@@ -198,4 +198,10 @@ Code đếm sự kiện gồm 2 phần:
 | 1000 câu (CIA Mission) | https://teoteo1081.github.io/L00_ES-CN/ | TJ_CIA Mission_EN-ES-CN-VN | `G-8W2S7SP8WN` |
 
 - Tài khoản GA4: **TJ Sai Gon Project**. Vào GA4: https://analytics.google.com
-- Property ID: *(chưa ghi, tìm ở Quản trị → Chi tiết về tài sản)*
+- Property ID của **TJ WordLoop Hub**: `556482840` (đọc từ đường link GA4: `.../a409949355p556482840/...` → số sau chữ **p** là Property ID, số sau chữ **a** là Account ID `409949355`). Nên đối chiếu lại 1 lần ở ⚙ Quản trị → Chi tiết về tài sản.
+
+### Mẹo đọc ID ngay trên thanh địa chỉ
+`analytics.google.com/analytics/web/#/a409949355p556482840/...`
+- `a` + số = **Account ID** (tài khoản)
+- `p` + số = **Property ID** (tài sản)
+- Mã `G-…` **không** nằm trên link, phải vào Luồng dữ liệu mới thấy.

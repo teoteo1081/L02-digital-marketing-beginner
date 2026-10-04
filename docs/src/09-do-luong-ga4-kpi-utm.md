@@ -53,11 +53,17 @@ tránh đặt tuỳ hứng mỗi lần một kiểu.
 GA4 là công cụ miễn phí đo hành vi khách trên website. Các chỉ số người mới nên quan tâm trước:
 
 - **Sessions/Users**: số lượt truy cập / số người truy cập thực tế.
-- **Engagement rate**: tỷ lệ phiên truy cập có tương tác thật sự (không rời trang ngay lập tức) —
-  chỉ số này thay thế cho "Bounce rate" ở phiên bản Analytics cũ.
+- **Engagement rate** (tỷ lệ tương tác): % lượt truy cập có tương tác thật. GA4 tính 1 lượt là
+  "có tương tác" khi khách ở lại **hơn 10 giây**, **hoặc** xem **từ 2 trang** trở lên, **hoặc**
+  làm 1 **sự kiện chính**. GA4 vẫn có **Bounce rate** (tỷ lệ thoát), nhưng nó chỉ đơn giản là
+  phần còn lại: **Bounce rate = 100% − Engagement rate**. Hai chỉ số này mặc định bị ẩn trong
+  nhiều báo cáo, phải bấm "tuỳ chỉnh báo cáo" mới thêm vào được.
 - **Nguồn traffic (Traffic acquisition)**: khách đến từ đâu — organic search, paid social, direct,
   referral... kết hợp với UTM ở trên để biết chính xác chiến dịch nào mang traffic.
-- **Conversions**: hành động bạn đã thiết lập để theo dõi (điền form, click nút mua, nhắn Zalo).
+- **Key events (Sự kiện chính)**: hành động quan trọng bạn đánh dấu để theo dõi (điền form, bấm
+  nút mua, nhắn Zalo). Từ năm 2024, GA4 đổi tên "Conversions" thành **"Key events"**. Chữ
+  "conversion" (chuyển đổi) bây giờ dành cho **Google Ads**, dùng để đo và tối ưu quảng cáo. Nếu
+  xem video/tài liệu cũ thấy "Conversions" trong GA4, hãy hiểu là "Key events".
 
 ## 6. Đọc báo cáo Ads Manager (Facebook/Google/TikTok/Zalo) — quy trình 3 bước
 
@@ -76,3 +82,10 @@ GA4 là công cụ miễn phí đo hành vi khách trên website. Các chỉ s�
 - Dùng UTM nhất quán để biết chính xác traffic đến từ kênh/chiến dịch nào.
 - GA4 đo hành vi trên website; Ads Manager đo hiệu quả quảng cáo — dùng cùng nhau để có bức tranh
   đầy đủ.
+
+## Nguồn tham khảo
+
+- Google — Sự kiện và sự kiện chính (vì sao đổi tên Conversions → Key events): https://support.google.com/analytics/answer/13965727?hl=vi
+- Google — Tỷ lệ tương tác và tỷ lệ thoát trong GA4: https://support.google.com/analytics/answer/12195621?hl=vi
+- Google — Nhóm kênh mặc định (Direct, Organic Social, Unassigned...): https://support.google.com/analytics/answer/9756891?hl=vi
+- Google — Gắn thẻ đúng cách để tránh lưu lượng Unassigned / (not set) / Direct: https://support.google.com/analytics/answer/14847402?hl=vi

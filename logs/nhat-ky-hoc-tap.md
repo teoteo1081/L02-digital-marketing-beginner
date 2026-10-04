@@ -70,4 +70,43 @@
 
 ---
 
-<!-- Buổi 2: thêm mục mới bên dưới theo cùng khung: Diễn biến · Cách học · Mức hiểu · Bài tập · Gợi ý -->
+## Buổi 2 · 2026-10-04 · Module 00: Đọc báo cáo GA4 đầu tiên
+
+### 1. Diễn biến buổi học
+
+| # | TJ hỏi / yêu cầu | Chuyện gì xảy ra | Khái niệm chạm tới |
+|---|---|---|---|
+| 1 | Gửi ảnh Trang chủ GA4 của TJ WordLoop Hub (7 ngày): "module đầu tiên đạt chưa?" | Đọc cùng nhau 3 thẻ báo cáo: quốc gia, tiêu đề trang, nhóm kênh | Đọc báo cáo tổng hợp (không chỉ Realtime) |
+| 2 | (từ ảnh) Đường link có `a409949355p556482840` | Tìm ra **Property ID = 556482840** ngay trên link | Account ID vs Property ID |
+| 3 | Yêu cầu sửa 7 điểm chưa chuẩn trong giáo trình, kèm nguồn | Đã sửa bài 02, 05, 06, 09, quiz 00, audit | Key events, learning phase, 6 mục tiêu Meta |
+| 4 | Hỏi nên để bài đọc ở đâu, có lồng vào game WordLoop được không | Tạo thư viện bài đọc `readings/`, bàn cách nối với WordLoop | Tách nội dung / giao diện |
+
+### 2. Đọc số liệu trong ảnh (7 ngày)
+
+| Thẻ | Số liệu | Ý nghĩa |
+|---|---|---|
+| Quốc gia | Vietnam 75 · China 3 · US 3 · Andorra, Belarus, Czechia, Algeria 1 | Người dùng thật chủ yếu ở VN. Mấy nước lẻ 1 người thường là **bot / công cụ quét**, chưa cần lo |
+| Tiêu đề trang | Game 461 · Hub 202 · Phòng… 15 · **Operation 0 → Chun…** 7 | Trang Game được xem nhiều nhất. **"Operation 0"** nghe như trang của 1 website khác → có thể website đó đang **dùng chung mã G-** với WordLoop, nên số bị cộng chung (xem Sổ tay mục 8) |
+| Nhóm kênh | Direct 141 · Organic Social 5 · Unassigned 2 | **Direct** cao vì link gửi qua Zalo/Messenger thường bị GA4 xếp vào "Direct" (không biết nguồn). Muốn biết đúng nguồn → gắn **UTM** (Module 09). **Unassigned** = GA4 không xếp được vào nhóm nào |
+
+### 3. Đánh giá Module 00
+
+| Hạng mục | Kết quả |
+|---|---|
+| GA4: tạo, gắn thẻ, kiểm chứng, đọc báo cáo | ✅ **Giỏi** — vượt yêu cầu: đã có dữ liệu 7 ngày thật, có sự kiện riêng |
+| Tìm Property ID | ✅ Xong (556482840) |
+| GA4 Demo | ⏳ Chưa thấy ảnh |
+| Meta Business Suite, Google Ads, TikTok Business Center, Zalo OA, Canva | ❓ Chưa xác nhận |
+| Chọn sản phẩm thực hành xuyên suốt | ❓ Chưa chốt (gợi ý: WordLoop) |
+
+**Kết luận:** phần GA4 **đạt mức Giỏi**. Cả Module 00 **chưa hoàn thành** vì còn 5 tài khoản khác và GA4 Demo chưa xác nhận.
+
+### 4. Bài tập tự làm
+1. Kiểm tra trang "Operation 0 → Chun…" thuộc website nào. Nếu là website khác → tạo **property riêng** cho nó (Sổ tay mục 8).
+2. Vào GA4 Demo, chụp 1 ảnh.
+3. Tick checklist 6 tài khoản trong `lessons/00-cai-dat-cong-cu/index.html`, chọn sản phẩm thực hành, bấm **Xuất bài làm**.
+4. Đọc bài đọc Module 00 trong `readings/` và làm 3 câu kiểu TOEIC cuối bài.
+
+---
+
+<!-- Buổi 3: thêm mục mới bên dưới theo cùng khung: Diễn biến · Đọc số liệu/Cách học · Đánh giá · Bài tập -->

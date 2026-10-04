@@ -1,6 +1,12 @@
 # Audit Report — Digital Marketing Beginner Project
 Ngày audit: 2026-09-20
 
+> **Cập nhật 2026-10-04:** Vấn đề Nhỏ #1 (CTR ước tính ở `facebook-ads-dashboard.html`) **đã được
+> sửa**: dữ liệu mẫu đã có trường `impressions` và code tính đúng `Clicks ÷ Impressions × 100%`.
+> Cùng ngày đã sửa thêm 6 điểm nội dung (tên Key events của GA4, learning phase / 6 mục tiêu /
+> Advantage campaign budget của Meta, TOFU-MOFU-BOFU, tiêu đề bảng module 06, quiz module 00) —
+> xem lịch sử commit.
+
 ## Tóm tắt kết luận
 
 Project đã **sẵn sàng bàn giao** cho người dùng. Cấu trúc thư mục khớp gần như tuyệt đối với plan

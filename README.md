@@ -14,6 +14,7 @@ digital-marketing-beginner/
 ├── ROADMAP.md              ← Lộ trình học 11 module (00-10), đọc file này trước tiên
 ├── docs/pdf/                ← Lý thuyết từng module, dạng PDF, đọc trước khi thực hành
 ├── lessons/                 ← Bài thực hành (mở file index.html trong mỗi thư mục module)
+├── readings/                ← Bài đọc song ngữ + từ vựng + câu hỏi kiểu TOEIC (mở index.html)
 ├── dashboards/               ← Ví dụ dashboard quảng cáo/analytics (mở index.html)
 ├── assessments/              ← Quiz + rubric chấm bài tập
 └── logs/                    ← Nơi lưu tiến độ học của bạn
@@ -36,6 +37,12 @@ digital-marketing-beginner/
    Claude sẽ đọc bài làm và cập nhật `logs/progress_tracker.json` giúp bạn — nhờ vậy, ở phiên làm
    việc sau (kể cả vài tuần sau), bạn chỉ cần hỏi *"tiến độ học của tôi tới đâu rồi?"* là Claude
    sẽ đọc `logs/progress_tracker.json` và trả lời chính xác, kèm gợi ý bước tiếp theo.
+
+## Bài đọc song ngữ (luyện TOEIC)
+
+Mở `readings/index.html`. Mỗi module có: tóm tắt tiếng Việt dễ hiểu, 1 đoạn tiếng Anh kiểu TOEIC
+Part 7 (e-mail, memo, thông báo...), bảng từ vựng và 3 câu hỏi tự chấm. Nội dung nằm riêng trong
+`readings/readings.js` để trang khác (ví dụ game WordLoop) cũng nạp lại được.
 
 ## Xem ví dụ dashboard
 

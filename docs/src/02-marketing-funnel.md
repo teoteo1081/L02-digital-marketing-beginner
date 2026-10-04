@@ -13,7 +13,7 @@ Mục tiêu của việc học funnel không phải để vẽ đẹp, mà để
 đâu** và tập trung sửa đúng chỗ đó, thay vì đổ hết ngân sách vào quảng cáo trong khi vấn đề thật
 nằm ở landing page hoặc dịch vụ tư vấn.
 
-## 2. 4 giai đoạn funnel (AIDA rút gọn thực dụng)
+## 2. 4 giai đoạn funnel (bản thực dụng cho người mới)
 
 | Giai đoạn | Tên gọi | Mục tiêu | Câu hỏi khách hàng đang tự hỏi |
 |---|---|---|---|
@@ -54,10 +54,16 @@ Nguyên tắc thực dụng: **luôn sửa điểm rớt nhiều nhất trước
 
 - **TOFU** (Top of Funnel) = Awareness
 - **MOFU** (Middle of Funnel) = Consideration
-- **BOFU** (Bottom of Funnel) = Conversion + Retention
+- **BOFU** (Bottom of Funnel) = Conversion
 
-Khi đọc tài liệu quảng cáo tiếng Anh (Facebook Ads, Google Ads), bạn sẽ thấy cách gọi này — nó
-tương ứng 1-1 với 4 giai đoạn ở trên.
+Khi đọc tài liệu quảng cáo tiếng Anh (Facebook Ads, Google Ads), bạn sẽ thấy cách gọi này. Lưu ý:
+TOFU/MOFU/BOFU chỉ có **3 tầng**, nên nó **không** khớp 1-1 với 4 giai đoạn ở trên. Giai đoạn
+**Retention** (giữ chân) nằm **sau** đáy phễu — khách đã mua rồi — nên nhiều tài liệu tách riêng
+nó ra (có nơi gọi là "post-purchase" hoặc vẽ thành vòng lặp quay lại đầu phễu).
+
+> 💡 Bạn có thể đã nghe **AIDA** (Attention – Interest – Desire – Action). Đó là mô hình **4 bước
+> tâm lý** khi khách xem 1 quảng cáo, không có bước giữ chân khách. 4 giai đoạn funnel ở trên là
+> mô hình khác, rộng hơn, đi đến cả sau khi mua.
 
 ## Tóm tắt
 
