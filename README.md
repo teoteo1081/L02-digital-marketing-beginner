@@ -17,6 +17,8 @@ digital-marketing-beginner/
 ├── readings/                ← Bài đọc song ngữ + từ vựng + câu hỏi kiểu TOEIC (mở index.html)
 ├── dashboards/               ← Ví dụ dashboard quảng cáo/analytics (mở index.html)
 ├── assessments/              ← Quiz + rubric chấm bài tập
+├── exams/                    ← Đề luyện kiểu TOEIC Reading về Digital Marketing (đề + đáp án riêng)
+├── plans/                    ← Kế hoạch làm thêm (vd game ôn tập kiểu WordLoop)
 └── logs/                    ← Nơi lưu tiến độ học của bạn
 ```
 
@@ -43,6 +45,11 @@ digital-marketing-beginner/
 Mở `readings/index.html`. Mỗi module có: tóm tắt tiếng Việt dễ hiểu, 1 đoạn tiếng Anh kiểu TOEIC
 Part 7 (e-mail, memo, thông báo...), bảng từ vựng và 3 câu hỏi tự chấm. Nội dung nằm riêng trong
 `readings/readings.js` để trang khác (ví dụ game WordLoop) cũng nạp lại được.
+
+## Đề luyện TOEIC Reading
+
+Mở `exams/de-01-toeic-reading-digital-marketing.md` (39 câu, khoảng 30 phút), làm xong mới
+mở `exams/dap-an-01-toeic-reading-digital-marketing.md` để chấm và đọc giải thích.
 
 ## Xem ví dụ dashboard
 
